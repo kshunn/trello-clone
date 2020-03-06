@@ -3,11 +3,9 @@ import styled from 'styled-components';
 import Card from './Card';
 
 export default function List({listName, cardList}){
-    const [cardKey, setCardKey] = useState(0);
     const [text, setText] = useState("");
     const createNewCard = text => {
-        cardList.push({key: cardKey, content: text});
-        setCardKey(cardKey+1);
+        cardList.push({key: text.concat(Date.now()), content: text});
     };
     const deleteCard = (key) => {
         cardList = cardList.filter(card => card.key !== key);

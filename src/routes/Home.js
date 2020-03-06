@@ -4,11 +4,9 @@ import Board from '../components/Board';
 import {Link} from 'react-router-dom';
 
 export default function Home({boardList}){
-    const [boardKey, setBoardKey] = useState(0);
     const [text, setText] = useState("");
     const createNewBoard = text => {
-        boardList.push({key: boardKey, boardName: text, listList: []});
-        setBoardKey(boardKey+1);
+        boardList.push({key: text.concat(Date.now()), boardName: text, listList: []});
     };
     const deleteBoard = key => {
         boardList = boardList.filter(board => board.key !== key);

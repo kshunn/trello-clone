@@ -3,11 +3,9 @@ import styled from 'styled-components';
 import List from './List';
 
 export default function Board({boardName, listList}) {
-    const [listKey, setListKey] = useState(0);
     const [text, setText] = useState("");
     const createNewList = text => {
-        listList.push({key: listKey, listName: text, cardList: []});
-        setListKey(listKey+1);
+        listList.push({key: text.concat(Date.now()), listName: text, cardList: []});
     };
     const deleteList = key => {
         listList = listList.filter(list => list.key !== key);
@@ -24,7 +22,7 @@ export default function Board({boardName, listList}) {
         <BoardContainer>
             <h4>{boardName}</h4>
             {listList.map(list =>(
-                <List key={listKey} listName={list.listName} cardList={list.cardList} />
+                <List key={list.key} listName={list.listName} cardList={list.cardList} />
             ))}
             <ListAdder onSubmit={onSubmit}>
                 <input type="text" value={text} onChange={onChange} />
