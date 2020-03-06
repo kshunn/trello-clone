@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 
 export default function Card({ content }){
-    const { content } = this.props;
     return (
         <card>{content}</card>
     );

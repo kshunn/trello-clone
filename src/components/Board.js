@@ -2,50 +2,50 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import List from './List';
 
-export default function Board({name}) {
-    const {name} = this.props;
+export default function Board({boardName}) {
     const [listList, setListList] = useState([]);
     const [listKey, setListKey] = useState(0);
-    const createNewList = e => {
-        const newListList = listList.push({key: listKey, name: e.target.value});
-        setListList(newListList);
+    const [text, setText] = useState("");
+    const createNewList = text => {
+        listList.push({key: listKey, listName: text});
+        setListList(listList);
         setListKey(listKey+1);
     };
     const deleteList = key => {
         const newListList = listList.filter(list => list.key !== key);
-        setList(newListList);
+        setListList(newListList);
     };
-    onChange = e =>{
+    const onChange = e =>{
         setText(e.target.value);
     };
-    onSubmit = e => {
+    const onSubmit = e => {
         e.preventDefault();
-        createNewList(e);
+        createNewList(text);
         setText("");
     };
     return(
-        <board>
-            <h4>{name}</h4>
+        <BoardContainer>
+            <h4>{boardName}</h4>
             {listList.map(list =>(
-                <List key={listKey} name={list.name} />
+                <List key={listKey} listName={list.listName} />
             ))}
-            <listAdder onSubmit={onSubmit}>
-                <input type="text" onChange={onChange} />
-                <button>Add</button>
-            </listAdder>
-        </board>
+            <ListAdder onSubmit={onSubmit}>
+                <input type="text" value={text} onChange={onChange} />
+                <button>AddL</button>
+            </ListAdder>
+        </BoardContainer>
     );
 
 }
 
-const board = styled.div`
+const BoardContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
 `;
 
-const listAdder = styled.form`
+const ListAdder = styled.form`
     display: flex;
     flex-direction: column;
     justify-content: center;

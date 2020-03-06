@@ -2,53 +2,53 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Card from './Card';
 
-export default function List({name}){
-    const {name} = this.props;
+export default function List({listName}){
     const [cardList, setCardList] = useState([]);
     const [cardKey, setCardKey] = useState(0);
-    const createNewCard = e => {
-        const newCardList = cardList.push({key: cardKey, content: e.target.value});
-        setCardList(newCardList);
+    const [text, setText] = useState("");
+    const createNewCard = text => {
+        cardList.push({key: cardKey, content: text});
+        setCardList(cardList);
         setCardKey(cardKey+1);
     };
     const deleteCard = (key) => {
         const newCardList = cardList.filter(card => card.key !== key);
         setCardList(newCardList);
     };
-    onChange = e =>{
+    const onChange = e =>{
         setText(e.target.value);
     };
-    onSubmit = e => {
+    const onSubmit = e => {
         e.preventDefault();
-        createNewCard(e);
+        createNewCard(text);
         setText("");
     };
     return (
-        <list>
-            <h4>{name}</h4>
+        <ListContainer>
+            <h4>{listName}</h4>
             {cardList.map(card => (
-                <cardWrapper>
+                <CardWrapper key={card.key}>
                     <Card key={card.key} content={card.content}/>
                     <button onClick={deleteCard(card.key)}>Del</button>
-                </cardWrapper>
+                </CardWrapper>
             ))}
-            <cardAdder onSubmit={onSubmit}>
-                <input type="text" onChange={onChange} />
-                <button>Add</button>
-            </cardAdder>
-        </list>
+            <CardAdder onSubmit={onSubmit}>
+                <input type="text" value={text} onChange={onChange} />
+                <button>AddC</button>
+            </CardAdder>
+        </ListContainer>
     );
 
 }
 
-const list = styled.div`
+const ListContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
 `;
 
-const cardWrapper = styled.div`
+const CardWrapper = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -56,7 +56,7 @@ const cardWrapper = styled.div`
     border: 1px solid gray;
 `;
 
-const cardAdder = styled.form`
+const CardAdder = styled.form`
     display: flex;
     flex-direction: row;
     justify-content: center;
