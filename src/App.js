@@ -15,12 +15,13 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
+    const [boardList, setBoardList] = React.useState([]);
     return (
         <>
             <GlobalStyle />
             <HashRouter>
-              <Route path="/" exact={true} component={Home} />
-              <Route path="/board/:id" component={BoardPage} />
+              <Route path="/" exact={true} render={props => <Home {...props} boardList={boardList}/>} />
+              <Route path="/board/:boardName" component={BoardPage} />
             </HashRouter>
         </>
     );

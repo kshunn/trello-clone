@@ -2,18 +2,15 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Card from './Card';
 
-export default function List({listName}){
-    const [cardList, setCardList] = useState([]);
+export default function List({listName, cardList}){
     const [cardKey, setCardKey] = useState(0);
     const [text, setText] = useState("");
     const createNewCard = text => {
         cardList.push({key: cardKey, content: text});
-        setCardList(cardList);
         setCardKey(cardKey+1);
     };
     const deleteCard = (key) => {
-        const newCardList = cardList.filter(card => card.key !== key);
-        setCardList(newCardList);
+        cardList = cardList.filter(card => card.key !== key);
     };
     const onChange = e =>{
         setText(e.target.value);

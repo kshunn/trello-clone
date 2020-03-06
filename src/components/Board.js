@@ -2,18 +2,15 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import List from './List';
 
-export default function Board({boardName}) {
-    const [listList, setListList] = useState([]);
+export default function Board({boardName, listList}) {
     const [listKey, setListKey] = useState(0);
     const [text, setText] = useState("");
     const createNewList = text => {
-        listList.push({key: listKey, listName: text});
-        setListList(listList);
+        listList.push({key: listKey, listName: text, cardList: []});
         setListKey(listKey+1);
     };
     const deleteList = key => {
-        const newListList = listList.filter(list => list.key !== key);
-        setListList(newListList);
+        listList = listList.filter(list => list.key !== key);
     };
     const onChange = e =>{
         setText(e.target.value);
@@ -27,7 +24,7 @@ export default function Board({boardName}) {
         <BoardContainer>
             <h4>{boardName}</h4>
             {listList.map(list =>(
-                <List key={listKey} listName={list.listName} />
+                <List key={listKey} listName={list.listName} cardList={list.cardList} />
             ))}
             <ListAdder onSubmit={onSubmit}>
                 <input type="text" value={text} onChange={onChange} />
