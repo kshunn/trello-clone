@@ -5,7 +5,8 @@ import List from './List';
 export default function Board({boardName, listList}) {
     const [text, setText] = useState("");
     const createNewList = text => {
-        listList.push({key: text.concat(Date.now()), listName: text, cardList: []});
+        const check = listList.filter(list => list.listName === text);
+        if(!check.length)   listList.push({key: text.concat(Date.now()), listName: text, cardList: []});
     };
     const deleteList = key => {
         listList = listList.filter(list => list.key !== key);

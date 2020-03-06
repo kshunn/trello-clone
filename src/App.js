@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-    const [boardList, setBoardList] = React.useState([]);
+    const boardList = React.useState([])[0];
     return (
         <>
             <GlobalStyle />

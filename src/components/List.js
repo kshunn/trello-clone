@@ -5,10 +5,12 @@ import Card from './Card';
 export default function List({listName, cardList}){
     const [text, setText] = useState("");
     const createNewCard = text => {
-        cardList.push({key: text.concat(Date.now()), content: text});
+        const check = cardList.filter(card => card.context === text);
+        if(!check.length) cardList.push({key: text.concat(Date.now()), content: text});
     };
     const deleteCard = (key) => {
         cardList = cardList.filter(card => card.key !== key);
+        console.log('!');
     };
     const onChange = e =>{
         setText(e.target.value);

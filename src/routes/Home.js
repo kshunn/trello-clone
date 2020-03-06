@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Board from '../components/Board';
 import {Link} from 'react-router-dom';
 
 export default function Home({boardList}){
     const [text, setText] = useState("");
     const createNewBoard = text => {
-        boardList.push({key: text.concat(Date.now()), boardName: text, listList: []});
+        const check = boardList.filter(board => board.boardName === text);
+        if(!check.length)  boardList.push({key: text.concat(Date.now()), boardName: text, listList: []});
     };
     const deleteBoard = key => {
         boardList = boardList.filter(board => board.key !== key);
@@ -22,7 +22,7 @@ export default function Home({boardList}){
     return(
         <>
             {boardList.map(board => (
-                <Link to={{
+                <Link key={board.key} to={{
                     pathname: `/board/${board.boardName}`,
                     state:{
                         key: board.key,
