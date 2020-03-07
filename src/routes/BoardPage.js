@@ -4,11 +4,10 @@ import Board from '../components/Board';
 import {Link} from 'react-router-dom';
 
 export default function BoardPage({location, history, create, remove}){
-    useEffect(() => {
-        if(location.state===undefined){
-            history.push("/");
-        }
-    }, );
+    if(location.state===undefined){
+        history.push("/");
+        return null;
+    }
     return (
         <>
             <Link to={{pathname: '/'}}>Home</Link>

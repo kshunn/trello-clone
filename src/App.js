@@ -73,6 +73,7 @@ function App() {
             }
           });
           setBoardList(newBoardList);
+          setBoardList(newBoardList);
         }
         else{ //removeCard
           const newBoardList = [...boardList];

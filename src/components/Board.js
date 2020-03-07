@@ -25,7 +25,7 @@ export default function Board({boardKey, boardName, listList, create, remove}) {
             {listList.map(list => (
                 <span key={list.listKey}>
                     <List boardKey={boardKey} listKey={list.listKey} listName={list.listName} cardList={list.cardList} create={create} remove={remove} />
-                    <button onClick={()=>deleteList(list.listKey)}>DelL</button>
+                    <button onClick={() => deleteList(list.listKey)}>DelL</button>
                 </span>
             ))}
             <ListAdder>
