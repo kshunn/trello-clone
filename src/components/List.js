@@ -2,15 +2,10 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Card from './Card';
 
-export default function List({listName, cardList}){
+export default function List({boardKey, listKey, listName, cardList, create, remove}){
     const [text, setText] = useState("");
     const createNewCard = text => {
-        const check = cardList.filter(card => card.context === text);
-        if(!check.length) cardList.push({key: text.concat(Date.now()), content: text});
-    };
-    const deleteCard = (key) => {
-        cardList = cardList.filter(card => card.key !== key);
-        console.log('!');
+        create(boardKey, listKey, text);
     };
     const onChange = e =>{
         setText(e.target.value);
@@ -20,18 +15,21 @@ export default function List({listName, cardList}){
         createNewCard(text);
         setText("");
     };
+    const deleteCard = (key) => {
+        remove(boardKey, listKey, key);
+    };
     return (
         <ListContainer>
             <h4>{listName}</h4>
             {cardList.map(card => (
-                <CardWrapper key={card.key}>
-                    <Card key={card.key} content={card.content}/>
-                    <button onClick={deleteCard(card.key)}>Del</button>
+                <CardWrapper key={card.cardKey}>
+                    <Card key={card.cardKey} content={card.content}/>
+                    <button onClick={()=>deleteCard(card.cardKey)}>Del</button>
                 </CardWrapper>
             ))}
-            <CardAdder onSubmit={onSubmit}>
+            <CardAdder>
                 <input type="text" value={text} onChange={onChange} />
-                <button>AddC</button>
+                <button onClick={onSubmit}>AddC</button>
             </CardAdder>
         </ListContainer>
     );
@@ -53,7 +51,7 @@ const CardWrapper = styled.div`
     border: 1px solid gray;
 `;
 
-const CardAdder = styled.form`
+const CardAdder = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;

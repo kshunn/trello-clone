@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import List from './List';
+import {EMPTY} from '../App';
 
-export default function Board({boardName, listList}) {
+export default function Board({boardKey, boardName, listList, create, remove}) {
     const [text, setText] = useState("");
     const createNewList = text => {
-        const check = listList.filter(list => list.listName === text);
-        if(!check.length)   listList.push({key: text.concat(Date.now()), listName: text, cardList: []});
+        create(boardKey, EMPTY, text);
     };
-    const deleteList = key => {
-        listList = listList.filter(list => list.key !== key);
+    const deleteList = (key) => {
+        remove(boardKey, key, EMPTY);
     };
     const onChange = e =>{
         setText(e.target.value);
@@ -22,12 +22,15 @@ export default function Board({boardName, listList}) {
     return(
         <BoardContainer>
             <h4>{boardName}</h4>
-            {listList.map(list =>(
-                <List key={list.key} listName={list.listName} cardList={list.cardList} />
+            {listList.map(list => (
+                <span key={list.listKey}>
+                    <List boardKey={boardKey} listKey={list.listKey} listName={list.listName} cardList={list.cardList} create={create} remove={remove} />
+                    <button onClick={()=>deleteList(list.listKey)}>DelL</button>
+                </span>
             ))}
-            <ListAdder onSubmit={onSubmit}>
+            <ListAdder>
                 <input type="text" value={text} onChange={onChange} />
-                <button>AddL</button>
+                <button onClick={onSubmit}>AddL</button>
             </ListAdder>
         </BoardContainer>
     );
@@ -41,7 +44,7 @@ const BoardContainer = styled.div`
     align-items: flex-start;
 `;
 
-const ListAdder = styled.form`
+const ListAdder = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;

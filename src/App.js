@@ -5,7 +5,6 @@ import Home from './routes/Home';
 import BoardPage from './routes/BoardPage';
 
 const GlobalStyle = createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css?family=Montserrat:500,700&display=swap');
     body{
         padding: 0;
         margin: 0;
@@ -14,14 +13,88 @@ const GlobalStyle = createGlobalStyle`
     }
 `;
 
+export const EMPTY =  '-';
+
 function App() {
-    const boardList = React.useState([])[0];
+    const [boardList, setBoardList] = React.useState([]);
+    const create = (boardKey, listKey, text) => {
+      if(boardKey===EMPTY){ //createBoard
+        const check = boardList.filter(board => board.boardName === text);
+        if(!check.length && text.length){
+            const newBoardList = boardList.concat([{boardKey: text.concat(Date.now()), boardName: text, listList: []}]);
+            setBoardList(newBoardList);
+        } 
+      }
+      else if(listKey===EMPTY){ //createList
+        const newBoardList = [...boardList];
+        newBoardList.forEach(board => {
+          if(board.boardKey===boardKey){
+            const check = board.listList.filter(list => list.listName === text);
+            if(!check.length && text.length){
+              board.listList.push({listKey: text.concat(Date.now()), listName: text, cardList: []});
+            }
+          }
+        });
+        setBoardList(newBoardList);
+      }
+      else{ //createCard
+        const newBoardList = [...boardList];
+        newBoardList.forEach(board => {
+          if(board.boardKey===boardKey){
+            board.listList.forEach(list => {
+              if(list.listKey===listKey){
+                const check = list.cardList.filter(card => card.content === text);
+                if(!check.length && text.length){
+                  list.cardList.push({cardKey: text.concat(Date.now()), content: text});
+                }
+              }
+            });
+          }
+        });
+        setBoardList(newBoardList);
+      } 
+    };
+
+
+    const remove = (boardKey, listKey, cardKey) => {
+      if(boardKey===EMPTY){
+        return;
+      }
+      else{
+        if(listKey===EMPTY){ //removeBoard
+          const newBoardList = boardList.filter(board => board.boardKey !== boardKey);
+          setBoardList(newBoardList);   
+        }
+        else if(cardKey===EMPTY){ //removeList
+          const newBoardList = [...boardList];
+          newBoardList.forEach(board => {
+            if(board.boardKey===boardKey){
+              board.listList = board.listList.filter(list => list.listKey !== listKey);
+            }
+          });
+          setBoardList(newBoardList);
+        }
+        else{ //removeCard
+          const newBoardList = [...boardList];
+          newBoardList.forEach(board => {
+            if(board.boardKey===boardKey){
+              board.listList.forEach(list => {
+                if(list.listKey===listKey){
+                  list.cardList = list.cardList.filter(card => card.cardKey !== cardKey);
+                }
+              });
+            }
+          });
+          setBoardList(newBoardList);
+        }
+      }
+    };
     return (
         <>
             <GlobalStyle />
             <HashRouter>
-              <Route path="/" exact={true} render={props => <Home {...props} boardList={boardList}/>} />
-              <Route path="/board/:boardName" component={BoardPage} />
+              <Route path="/" exact={true} render={props => <Home {...props} boardList={boardList} create={create} remove={remove}/>} />
+              <Route path="/board/:boardName" render={props => <BoardPage {...props} create={create} remove={remove} />} />
             </HashRouter>
         </>
     );

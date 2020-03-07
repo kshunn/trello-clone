@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
+import {EMPTY} from '../App';
 
-export default function Home({boardList}){
+export default function Home({boardList, create, remove}){
     const [text, setText] = useState("");
     const createNewBoard = text => {
-        const check = boardList.filter(board => board.boardName === text);
-        if(!check.length)  boardList.push({key: text.concat(Date.now()), boardName: text, listList: []});
+        create(EMPTY, EMPTY, text);
     };
     const deleteBoard = key => {
-        boardList = boardList.filter(board => board.key !== key);
+        remove(key, EMPTY, EMPTY);
     };
     const onChange = e =>{
         setText(e.target.value);
@@ -22,27 +22,30 @@ export default function Home({boardList}){
     return(
         <>
             {boardList.map(board => (
-                <Link key={board.key} to={{
-                    pathname: `/board/${board.boardName}`,
-                    state:{
-                        key: board.key,
-                        name: board.boardName,
-                        listList: board.listList
-                    }
-                }}>
-                    <h4>{board.boardName}</h4>
-                </Link>
+                <span key={board.boardKey}>
+                    <Link to={{
+                        pathname: `/board/${board.boardName}`,
+                        state:{
+                            key: board.boardKey,
+                            name: board.boardName,
+                            listList: board.listList,
+                        }
+                    }}>
+                        <h4>{board.boardName}</h4>
+                    </Link>
+                    <button onClick={() => deleteBoard(board.boardKey)}>DelB</button>
+                </span>
                 
             ))}
-            <BoardAdder onSubmit={onSubmit}>
+            <BoardAdder>
                 <input type="text" value={text} onChange={onChange} />
-                <button type="submit">AddB</button>
+                <button onClick={onSubmit}>AddB</button>
             </BoardAdder>
         </>
     );
 }
 
-const BoardAdder = styled.form`
+const BoardAdder = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
