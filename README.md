@@ -11,4 +11,11 @@ Implement the board, list, and card system
 React
 
 ## Status
-* [ ] Define components 
+* [x] Define components 
+* [x] Define routes and router
+* [x] Board creating feature
+* [x] List creating feature
+* [x] Card creating feature
+* [x] Board removing feature
+* [ ] List removing feature
+* [x] Card removing feature
