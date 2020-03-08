@@ -5,6 +5,7 @@ import {Button, Input, Shadow} from '../routes/Home';
 
 const ADD = "fas fa-plus";
 const DELETE = "fas fa-trash";
+const CHECK = "fas fa-check";
 
 export default function List({boardKey, listKey, listName, cardList, create, remove}){
     const [text, setText] = useState("");
@@ -28,12 +29,13 @@ export default function List({boardKey, listKey, listName, cardList, create, rem
             {cardList.map(card => (
                 <CardWrapper key={card.cardKey}>
                     <Card key={card.cardKey} content={card.content}/>
-                    <Button onClick={()=>deleteCard(card.cardKey)}><i class={DELETE}></i></Button>
+                    <WhiteButton><i class={CHECK}></i></WhiteButton>
+                    <WhiteButton onClick={()=>deleteCard(card.cardKey)}><i class={DELETE}></i></WhiteButton>
                 </CardWrapper>
             ))}
             <CardAdder>
                 <CardInput type="text" value={text} onChange={onChange} placeholder='Add a card..' />
-                <Button onClick={onSubmit}><i class={ADD}></i></Button>
+                <WhiteButton onClick={onSubmit}><i class={ADD}></i></WhiteButton>
             </CardAdder>
         </ListContainer>
     );
@@ -58,9 +60,9 @@ const CardWrapper = styled.div`
     margin: 5px 0;
     border-radius: 5px;
     ${Shadow};
-    background-color: #6dabe4;
+    background-color: #6a89cc;
     padding: 10px;
-
+    color: white;
 `;
 
 const CardAdder = styled.div`
@@ -72,14 +74,26 @@ const CardAdder = styled.div`
     width: 100%;
     margin: 5px 0;
     ${Shadow};
-    background-color: #6dabe4;
+    background-color: #6a89cc;
     padding: 10px;
+    color: white;
 `;
 
 const CardInput = styled(Input)`
     width: 100%;
+    color: white;
+    &::placeholder{
+        color: #dcdde1;
+    }
 `;
 
 const ListTitle = styled.h4`
     text-transform: uppercase;
+`;
+
+const WhiteButton = styled(Button)`
+    color: white;
+    &:hover{
+        color: #dcdde1;
+    }
 `;

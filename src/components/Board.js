@@ -72,4 +72,6 @@ const ListWrapper = styled.div`
 
 const ListInput = styled(Input)`
     margin-bottom: 5px;
+    text-align: center;
+    font-weight: bold;
 `;

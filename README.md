@@ -1,5 +1,4 @@
 # trello-clone
-Implement the board, list, and card system
 
 ## Features
 * Board CRUD
@@ -20,4 +19,4 @@ React
 * [x] List removing feature
 * [x] Card removing feature
 * [x] Add designs
-* [ ] Card checking feature
+* [ ] Card marking feature
