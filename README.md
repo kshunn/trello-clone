@@ -19,4 +19,5 @@ React
 * [x] List removing feature
 * [x] Card removing feature
 * [x] Add designs
-* [ ] Card marking feature
+* [x] Card checking feature
+* [ ] Save as local data
