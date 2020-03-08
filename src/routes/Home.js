@@ -94,6 +94,7 @@ const ToBoard = styled(Link)`
     }
     margin: auto;
     font-weight: bold;
+    word-break: break-all;
 `;
 
 const BoardAdder = styled.div`

@@ -54,6 +54,7 @@ const ListContainer = styled.div`
     align-items: center;
     padding: 10px;
     width: 200px;
+    word-break: break-all;
 `;
 
 const CardWrapper = styled.div`
