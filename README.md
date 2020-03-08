@@ -20,4 +20,4 @@ React
 * [x] Card removing feature
 * [x] Add designs
 * [x] Card checking feature
-* [ ] Save as local data
+* [x] Save as local data
