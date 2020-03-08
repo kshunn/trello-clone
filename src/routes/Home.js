@@ -60,7 +60,8 @@ export const Button = styled.button`
     background: none;
     &:hover{
         color: #576574;
-    }    
+    }
+    cursor: pointer;    
 `;
 
 export const Input = styled.input`
@@ -82,7 +83,7 @@ const BoardInput = styled(Input)`
     font-weight: bold;
     font-size: 16px;
     width: 100%;
-    margin: auto;
+    margin: auto 0;
 `;
 
 const ToBoard = styled(Link)`
