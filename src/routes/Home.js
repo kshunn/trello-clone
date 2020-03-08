@@ -27,8 +27,7 @@ export default function Home({boardList, create, remove}){
                         pathname: `/board/${board.boardName}`,
                         state:{
                             key: board.boardKey,
-                            name: board.boardName,
-                            listList: board.listList,
+                            name: board.boardName
                         }
                     }}>
                         <h4>{board.boardName}</h4>

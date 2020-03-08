@@ -95,7 +95,7 @@ function App() {
             <GlobalStyle />
             <HashRouter>
               <Route path="/" exact={true} render={props => <Home {...props} boardList={boardList} create={create} remove={remove}/>} />
-              <Route path="/board/:boardName" render={props => <BoardPage {...props} create={create} remove={remove} />} />
+              <Route path="/board/:boardName" render={props => <BoardPage {...props} boardList={boardList} create={create} remove={remove} />} />
             </HashRouter>
         </>
     );
