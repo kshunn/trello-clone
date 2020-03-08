@@ -14,10 +14,17 @@ const GlobalStyle = createGlobalStyle`
     }
 `;
 
-export const EMPTY =  '-';
+export const EMPTY =  '---';
 
 function App() {
-    const [boardList, setBoardList] = React.useState([]);
+    const [boardList, setBoardList] = React.useState(
+      JSON.parse(localStorage.getItem('localBoardList')) || []
+    );
+
+    React.useEffect(() => {
+      localStorage.setItem('localBoardList', JSON.stringify(boardList));
+    }, [boardList]);
+
     const create = (boardKey, listKey, text) => {
       if(boardKey===EMPTY){ //createBoard
         const check = boardList.filter(board => board.boardName === text);
