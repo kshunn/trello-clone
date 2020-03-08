@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Card from './Card';
-import {Button, Input} from '../routes/Home';
+import {Button, Input, Shadow} from '../routes/Home';
 
 const ADD = "fas fa-plus";
 const DELETE = "fas fa-trash";
@@ -57,7 +57,7 @@ const CardWrapper = styled.div`
     width: 100%;
     margin: 5px 0;
     border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    ${Shadow};
     background-color: #6dabe4;
     padding: 10px;
 
@@ -71,7 +71,7 @@ const CardAdder = styled.div`
     border-radius: 5px;
     width: 100%;
     margin: 5px 0;
-    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    ${Shadow};
     background-color: #6dabe4;
     padding: 10px;
 `;

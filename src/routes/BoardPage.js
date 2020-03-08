@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Board from '../components/Board';
 import {Link} from 'react-router-dom';
+import {Shadow} from '../routes/Home';
 
 export default function BoardPage({location, history, boardList, create, remove}){
     if(location.state===undefined){
@@ -40,7 +41,7 @@ const BoardTitle = styled.h1`
     border-radius: 5px;
     padding: 10px 20px;
     color: white;
-    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    ${Shadow};
 `;
 
 const ToHome = styled(Link)`
