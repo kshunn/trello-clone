@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Card from './Card';
+import {Button, Input} from '../routes/Home';
+
+const ADD = "fas fa-plus";
+const DELETE = "fas fa-trash";
 
 export default function List({boardKey, listKey, listName, cardList, create, remove}){
     const [text, setText] = useState("");
@@ -20,16 +24,16 @@ export default function List({boardKey, listKey, listName, cardList, create, rem
     };
     return (
         <ListContainer>
-            <h4>{listName}</h4>
+            <ListTitle>{listName}</ListTitle>
             {cardList.map(card => (
                 <CardWrapper key={card.cardKey}>
                     <Card key={card.cardKey} content={card.content}/>
-                    <button onClick={()=>deleteCard(card.cardKey)}>Del</button>
+                    <Button onClick={()=>deleteCard(card.cardKey)}><i class={DELETE}></i></Button>
                 </CardWrapper>
             ))}
             <CardAdder>
-                <input type="text" value={text} onChange={onChange} />
-                <button onClick={onSubmit}>AddC</button>
+                <CardInput type="text" value={text} onChange={onChange} placeholder='Add a card..' />
+                <Button onClick={onSubmit}><i class={ADD}></i></Button>
             </CardAdder>
         </ListContainer>
     );
@@ -41,6 +45,8 @@ const ListContainer = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    padding: 10px;
+    width: 200px;
 `;
 
 const CardWrapper = styled.div`
@@ -48,7 +54,13 @@ const CardWrapper = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border: 1px solid gray;
+    width: 100%;
+    margin: 5px 0;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    background-color: #6dabe4;
+    padding: 10px;
+
 `;
 
 const CardAdder = styled.div`
@@ -56,6 +68,18 @@ const CardAdder = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border: 1px solid gray;
+    border-radius: 5px;
+    width: 100%;
+    margin: 5px 0;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    background-color: #6dabe4;
+    padding: 10px;
 `;
 
+const CardInput = styled(Input)`
+    width: 100%;
+`;
+
+const ListTitle = styled.h4`
+    text-transform: uppercase;
+`;

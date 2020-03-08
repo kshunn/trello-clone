@@ -9,6 +9,8 @@ export default function Card({ content }){
 }
 
 const Cardtext = styled.div`
-    flex: 1;
-    border: 1px solid black;
+    width: 100%;
+    padding: 5px;
+    text-align: left;
+    font-size: 14px;
 `;
