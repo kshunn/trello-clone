@@ -30,7 +30,7 @@ export default function Home({boardList, create, remove}){
                 {boardList.map(board => (
                     <BoardLink key={board.boardKey}>
                         <ToBoard to={{
-                            pathname: `/board/${board.boardName}`,
+                            pathname: `/board/${board.boardName}-board`,
                             state:{
                                 key: board.boardKey,
                                 name: board.boardName
