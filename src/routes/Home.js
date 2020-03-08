@@ -135,16 +135,12 @@ const BoardLink = styled.div`
 `;
 
 const Boards = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 `;
 
 const BoardsWrapper = styled.div`
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
     padding: 10px;
     align-items: center;
