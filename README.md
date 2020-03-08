@@ -17,5 +17,7 @@ React
 * [x] List creating feature
 * [x] Card creating feature
 * [x] Board removing feature
-* [ ] List removing feature
+* [x] List removing feature
 * [x] Card removing feature
+* [x] Add designs
+* [ ] Card checking feature
