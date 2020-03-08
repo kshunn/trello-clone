@@ -7,7 +7,7 @@ import {Button, Input, Shadow} from '../routes/Home';
 const ADD = "fas fa-plus";
 const DELETE = "fas fa-trash";
 
-export default function Board({boardKey, boardName, listList, create, remove}) {
+export default function Board({boardKey, boardName, listList, create, remove, toggleDone}) {
     const [text, setText] = useState("");
     const createNewList = text => {
         create(boardKey, EMPTY, text);
@@ -27,13 +27,21 @@ export default function Board({boardKey, boardName, listList, create, remove}) {
         <BoardContainer>
             {listList.map(list => (
                 <ListWrapper key={list.listKey}>
-                    <List boardKey={boardKey} listKey={list.listKey} listName={list.listName} cardList={list.cardList} create={create} remove={remove} />
-                    <Button onClick={() => deleteList(list.listKey)}><i class={DELETE}></i></Button>
+                    <List
+                        boardKey={boardKey} 
+                        listKey={list.listKey} 
+                        listName={list.listName} 
+                        cardList={list.cardList} 
+                        create={create} 
+                        remove={remove} 
+                        toggleDone={toggleDone}
+                    />
+                    <Button onClick={() => deleteList(list.listKey)}><i className={DELETE}></i></Button>
                 </ListWrapper>
             ))}
             <ListAdder>
                 <ListInput type="text" value={text} onChange={onChange} placeholder='Add a list..'/>
-                <Button onClick={onSubmit}><i class={ADD}></i></Button>
+                <Button onClick={onSubmit}><i className={ADD}></i></Button>
             </ListAdder>
         </BoardContainer>
     );

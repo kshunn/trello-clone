@@ -5,9 +5,8 @@ import {Button, Input, Shadow} from '../routes/Home';
 
 const ADD = "fas fa-plus";
 const DELETE = "fas fa-trash";
-const CHECK = "fas fa-check";
 
-export default function List({boardKey, listKey, listName, cardList, create, remove}){
+export default function List({boardKey, listKey, listName, cardList, create, remove, toggleDone}){
     const [text, setText] = useState("");
     const createNewCard = text => {
         create(boardKey, listKey, text);
@@ -28,14 +27,20 @@ export default function List({boardKey, listKey, listName, cardList, create, rem
             <ListTitle>{listName}</ListTitle>
             {cardList.map(card => (
                 <CardWrapper key={card.cardKey}>
-                    <Card key={card.cardKey} content={card.content}/>
-                    <WhiteButton><i class={CHECK}></i></WhiteButton>
-                    <WhiteButton onClick={()=>deleteCard(card.cardKey)}><i class={DELETE}></i></WhiteButton>
+                    <Card 
+                        boardKey={boardKey}
+                        listKey={listKey}
+                        cardKey={card.cardKey}
+                        content={card.content}
+                        done={card.done}
+                        toggleDone={toggleDone}
+                    />
+                    <WhiteButton onClick={()=>deleteCard(card.cardKey)}><i className={DELETE}></i></WhiteButton>
                 </CardWrapper>
             ))}
             <CardAdder>
                 <CardInput type="text" value={text} onChange={onChange} placeholder='Add a card..' />
-                <WhiteButton onClick={onSubmit}><i class={ADD}></i></WhiteButton>
+                <WhiteButton onClick={onSubmit}><i className={ADD}></i></WhiteButton>
             </CardAdder>
         </ListContainer>
     );
@@ -91,7 +96,7 @@ const ListTitle = styled.h4`
     text-transform: uppercase;
 `;
 
-const WhiteButton = styled(Button)`
+export const WhiteButton = styled(Button)`
     color: white;
     &:hover{
         color: #dcdde1;

@@ -38,12 +38,12 @@ export default function Home({boardList, create, remove}){
                         }}>
                             {board.boardName}
                         </ToBoard>
-                        <Button onClick={() => deleteBoard(board.boardKey)}><i class={DELETE}></i></Button>
+                        <Button onClick={() => deleteBoard(board.boardKey)}><i className={DELETE}></i></Button>
                     </BoardLink>
                 ))}
                 <BoardAdder>
                     <BoardInput type="text" value={text} onChange={onChange} placeholder='Add a board..'/>
-                    <Button onClick={onSubmit}><i class={ADD}></i></Button>
+                    <Button onClick={onSubmit}><i className={ADD}></i></Button>
                 </BoardAdder>
                 </Boards>   
             </BoardsWrapper>

@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Board from '../components/Board';
 import {Link} from 'react-router-dom';
 import {Shadow} from '../routes/Home';
 
-export default function BoardPage({location, history, boardList, create, remove}){
+export default function BoardPage({location, history, boardList, create, remove, toggleDone}){
     if(location.state===undefined){
         history.push("/");
         return null;
@@ -14,7 +14,7 @@ export default function BoardPage({location, history, boardList, create, remove}
         <BoardPageWrapper>
             <Header>
                 <BoardTitle>{location.state.name}</BoardTitle>
-                <ToHome to={{pathname: '/'}}><i class="fas fa-home"></i></ToHome>
+                <ToHome to={{pathname: '/'}}><i className="fas fa-home"></i></ToHome>
             </Header>
             <Board 
                 boardKey={location.state.key} 
@@ -22,6 +22,7 @@ export default function BoardPage({location, history, boardList, create, remove}
                 listList={board.listList} 
                 create={create} 
                 remove={remove}
+                toggleDone={toggleDone}
             />
         </BoardPageWrapper>
     );
@@ -31,7 +32,6 @@ const BoardPageWrapper = styled.div`
     display: flex;
     flex-direction: column;
     text-align: center;
-    background-color: white;
 `;
 
 const BoardTitle = styled.h1`

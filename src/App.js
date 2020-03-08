@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
         margin: 0;
         box-sizing: border-box;
         font-family: 'Montserrat';
+        background-color: #f1f1f1;
     }
 `;
 
@@ -45,7 +46,7 @@ function App() {
               if(list.listKey===listKey){
                 const check = list.cardList.filter(card => card.content === text);
                 if(!check.length && text.length){
-                  list.cardList.push({cardKey: text.concat(Date.now()), content: text});
+                  list.cardList.push({cardKey: text.concat(Date.now()), content: text, done: false});
                 }
               }
             });
@@ -90,12 +91,31 @@ function App() {
         }
       }
     };
+
+    const toggleDone = (boardKey, listKey, cardKey) => {
+      const newBoardList = [...boardList];
+      newBoardList.forEach(board => {
+        if(board.boardKey===boardKey){
+          board.listList.forEach(list => {
+            if(list.listKey===listKey){
+              list.cardList.forEach(card => {
+                if(card.cardKey===cardKey){
+                  card.done = !card.done;
+                }
+              });
+            }
+          });
+        }
+      });
+      setBoardList(newBoardList);
+    };
+
     return (
         <>
             <GlobalStyle />
             <HashRouter>
               <Route path="/" exact={true} render={props => <Home {...props} boardList={boardList} create={create} remove={remove}/>} />
-              <Route path="/board/:boardName" render={props => <BoardPage {...props} boardList={boardList} create={create} remove={remove} />} />
+              <Route path="/board/:boardName" render={props => <BoardPage {...props} boardList={boardList} create={create} remove={remove} toggleDone={toggleDone}/>} />
             </HashRouter>
         </>
     );
