@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import Board from '../components/Board';
 import {Link} from 'react-router-dom';
-import {Shadow} from '../routes/Home';
 
 export default function BoardPage({location, history, boardList, create, remove, toggleDone}){
     if(location.state===undefined){

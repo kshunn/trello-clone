@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import List from './List';
 import {EMPTY} from '../App';
-import {Button, Input, Shadow} from '../routes/Home';
+import {Button, Input} from '../routes/Home';
 
 const ADD = "fas fa-plus";
 const DELETE = "fas fa-trash";
@@ -65,7 +65,6 @@ const ListAdder = styled.div`
     margin: 0 10px;
     border-radius: 5px;
     background-color: #f1f1f1;
-    ${Shadow};
     padding: 10px 10px 5px 10px;
 `;
 
@@ -76,8 +75,7 @@ const ListWrapper = styled.div`
     border-radius: 10px;
     padding: 10px;
     background-color: #f1f1f1;
-    ${Shadow};
-    width: 19vw;
+    width: 220px;
 `;
 
 const ListInput = styled(Input)`

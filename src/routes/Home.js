@@ -51,10 +51,6 @@ export default function Home({boardList, create, remove}){
     );
 }
 
-export const Shadow = css`
-    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.3), 0 1px 3px rgba(0, 0, 0, 0.3);
-`;
-
 export const Button = styled.button`
     border: none;
     background: none;
@@ -109,7 +105,6 @@ const BoardAdder = styled.div`
     width: 150px;
     height: 150px;
     background-color: #f1f1f1;
-    ${Shadow};
 `;
 
 const Container = styled.div`
@@ -132,7 +127,6 @@ const BoardLink = styled.div`
     width: 150px;
     height: 150px;
     background-color: #f1f1f1;
-    ${Shadow};
 `;
 
 const Boards = styled.div`
@@ -147,7 +141,6 @@ const BoardsWrapper = styled.div`
     align-items: center;
     border-radius: 20px;
     background-color: #6a89cc;
-    ${Shadow};
 `;
 
 
