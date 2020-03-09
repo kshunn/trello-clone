@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import List from './List';
 import {EMPTY} from '../App';
 import {Button, Input} from '../routes/Home';
@@ -53,8 +53,9 @@ const BoardContainer = styled.div`
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 0 10px 10px 10px;
+    padding: 0 10px 10px;
     overflow-x: auto;
+    flex-grow: 1;
 `;
 
 const ListAdder = styled.div`

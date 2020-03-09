@@ -29,8 +29,9 @@ export default function BoardPage({location, history, boardList, create, remove,
 
 const BoardPageWrapper = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-flow: column;
     text-align: center;
+    min-height: 100vh;
 `;
 
 const BoardTitle = styled.h1`
