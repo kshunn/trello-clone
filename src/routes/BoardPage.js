@@ -36,8 +36,6 @@ const BoardPageWrapper = styled.div`
 const BoardTitle = styled.h1`
     font-size: 30px;
     margin: auto;
-    // background: #6a89cc;
-    // border-radius: 5px;
     padding: 10px 20px;
     color: rgba(0, 0, 0, 0.4);
 `;

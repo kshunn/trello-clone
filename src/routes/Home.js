@@ -90,7 +90,8 @@ const ToBoard = styled(Link)`
     }
     margin: auto;
     font-weight: bold;
-    word-break: break-all;
+    word-wrap: break-word;
+    word-break: break-word;
     text-align: center;
 `;
 
