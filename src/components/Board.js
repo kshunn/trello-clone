@@ -39,10 +39,12 @@ export default function Board({boardKey, boardName, listList, create, remove, to
                     <Button onClick={() => deleteList(list.listKey)}><i className={DELETE}></i></Button>
                 </ListWrapper>
             ))}
-            <ListAdder>
-                <ListInput type="text" value={text} onChange={onChange} placeholder='Add a list..'/>
-                <Button onClick={onSubmit}><i className={ADD}></i></Button>
-            </ListAdder>
+            <div>
+                <ListAdder>
+                    <ListInput type="text" value={text} onChange={onChange} placeholder='Add a list..'/>
+                    <Button onClick={onSubmit}><i className={ADD}></i></Button>
+                </ListAdder>
+            </div>
         </BoardContainer>
     );
 
@@ -63,10 +65,11 @@ const ListAdder = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0 10px;
+    margin: 0 20px 0 10px;
     border-radius: 10px;
     background-color: #f1f1f1;
     padding: 10px 10px 5px 10px;
+    width: 210px;
 `;
 
 const ListWrapper = styled.div`
@@ -76,8 +79,8 @@ const ListWrapper = styled.div`
     border-radius: 10px;
     padding: 10px;
     background-color: #f1f1f1;
-    min-width: 220px;
-    max-width: 220px;
+    min-width: 210px;
+    max-width: 210px;
 `;
 
 const ListInput = styled(Input)`
