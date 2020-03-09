@@ -12,6 +12,17 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'Montserrat', 'Noto Sans KR';
         background-color: #f1f1f1;
     }
+    ::-webkit-scrollbar{
+      background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-track{
+      box-shadow: inset 0 0 10px #00000070;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb{
+      background: #8395a7;
+      border-radius: 10px;
+    }
 `;
 
 export const EMPTY =  '---';
