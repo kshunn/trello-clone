@@ -14,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
     }
     ::-webkit-scrollbar{
       background: #f1f1f1;
+      height: 14px;
     }
     ::-webkit-scrollbar-track{
       box-shadow: inset 0 0 10px #00000070;
