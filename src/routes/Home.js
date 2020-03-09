@@ -91,6 +91,7 @@ const ToBoard = styled(Link)`
     text-decoration: none;
     &:hover{
         color: #576574;
+        font-size: 20px;
     }
     margin: auto;
     font-weight: bold;
