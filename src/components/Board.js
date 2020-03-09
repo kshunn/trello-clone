@@ -53,7 +53,8 @@ const BoardContainer = styled.div`
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 0 10px;
+    padding: 0 10px 10px 10px;
+    overflow-x: auto;
 `;
 
 const ListAdder = styled.div`

@@ -79,7 +79,7 @@ const ScrollView = styled.div`
     justify-content: flex-start;
     align-items: center;
     padding: 0 10px;
-    max-height: 300px;
+    max-height: 270px;
     overflow-y: auto;
 `;
 
