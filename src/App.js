@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         margin: 0;
         box-sizing: border-box;
-        font-family: 'Montserrat', 'Noto Sans KR';
+        font-family: 'Lora', 'Noto Serif KR';
         background-color: #c8d6e5;
     }
     ::-webkit-scrollbar{

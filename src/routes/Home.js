@@ -64,7 +64,7 @@ export const Input = styled.input`
     border: none;
     padding: 5px;
     background: none;
-    font-family: 'Montserrat', 'Noto Sans KR';
+    font-family: 'Lora', 'Noto Serif KR';
     &::placeholder{
         color: #576574;
     }

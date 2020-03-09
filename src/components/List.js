@@ -24,7 +24,7 @@ export default function List({boardKey, listKey, listName, cardList, create, rem
     };
     return (
         <ListContainer>
-            <ListTitle>{listName}</ListTitle>
+            <h4>{listName}</h4>
             <ScrollView>
             {cardList.map(card => (
                 <CardWrapper key={card.cardKey}>
@@ -102,10 +102,6 @@ const CardInput = styled(Input)`
     &::placeholder{
         color: #dcdde1;
     }
-`;
-
-const ListTitle = styled.h4`
-    text-transform: uppercase;
 `;
 
 export const WhiteButton = styled(Button)`
