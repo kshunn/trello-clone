@@ -63,7 +63,7 @@ const ListAdder = styled.div`
     justify-content: center;
     align-items: center;
     margin: 0 10px;
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: #f1f1f1;
     padding: 10px 10px 5px 10px;
 `;
@@ -75,7 +75,8 @@ const ListWrapper = styled.div`
     border-radius: 10px;
     padding: 10px;
     background-color: #f1f1f1;
-    width: 220px;
+    min-width: 220px;
+    max-width: 220px;
 `;
 
 const ListInput = styled(Input)`
