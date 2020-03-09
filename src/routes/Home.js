@@ -91,11 +91,12 @@ const ToBoard = styled(Link)`
     text-decoration: none;
     &:hover{
         color: #576574;
-        font-size: 20px;
+        font-size: 18px;
     }
     margin: auto;
     font-weight: bold;
     word-break: break-all;
+    text-align: center;
 `;
 
 const BoardAdder = styled.div`
