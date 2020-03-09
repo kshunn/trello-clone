@@ -58,5 +58,5 @@ const Header = styled.header`
     justify-content: center;
     align-items: center;
     padding: 10px 20px;
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.5);
 `;

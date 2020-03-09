@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
         margin: 0;
         box-sizing: border-box;
         font-family: 'Montserrat', 'Noto Sans KR';
-        background-color: #f1f1f1;
+        background-color: #c8d6e5;
     }
     ::-webkit-scrollbar{
       background: #f1f1f1;
