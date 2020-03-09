@@ -21,3 +21,8 @@ React
 * [x] Add designs
 * [x] Card checking feature
 * [x] Save as local data
+* [x] List scrolling feature
+* [x] Card scrolling feature
+* [ ] List drag and drop feature
+* [ ] Card drag and drop feature
+* [ ] Board pinning feature
