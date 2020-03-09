@@ -76,6 +76,7 @@ const ListWrapper = styled.div`
     padding: 10px;
     background-color: #f1f1f1;
     ${Shadow};
+    min-width: 19vw;
 `;
 
 const ListInput = styled(Input)`

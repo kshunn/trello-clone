@@ -25,6 +25,7 @@ export default function List({boardKey, listKey, listName, cardList, create, rem
     return (
         <ListContainer>
             <ListTitle>{listName}</ListTitle>
+            <ScrollView>
             {cardList.map(card => (
                 <CardWrapper key={card.cardKey}>
                     <Card 
@@ -38,6 +39,7 @@ export default function List({boardKey, listKey, listName, cardList, create, rem
                     <WhiteButton onClick={()=>deleteCard(card.cardKey)}><i className={DELETE}></i></WhiteButton>
                 </CardWrapper>
             ))}
+            </ScrollView>
             <CardAdder>
                 <CardInput type="text" value={text} onChange={onChange} placeholder='Add a card..' />
                 <WhiteButton onClick={onSubmit}><i className={ADD}></i></WhiteButton>
@@ -53,7 +55,6 @@ const ListContainer = styled.div`
     justify-content: flex-start;
     align-items: center;
     padding: 10px;
-    width: 200px;
     word-break: break-all;
 `;
 
@@ -69,6 +70,17 @@ const CardWrapper = styled.div`
     background-color: #6a89cc;
     padding: 10px;
     color: white;
+`;
+
+const ScrollView = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 10px;
+    max-height: 300px;
+    overflow-y: auto;
 `;
 
 const CardAdder = styled.div`
