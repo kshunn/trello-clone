@@ -35,20 +35,19 @@ const BoardPageWrapper = styled.div`
 `;
 
 const BoardTitle = styled.h1`
-    font-size: 35px;
+    font-size: 30px;
     margin: auto;
-    background: #6a89cc;
-    border-radius: 5px;
+    // background: #6a89cc;
+    // border-radius: 5px;
     padding: 10px 20px;
-    color: white;
-    ${Shadow};
+    color: rgba(0, 0, 0, 0.4);
 `;
 
 const ToHome = styled(Link)`
     font-size: 30px;
-    color: #6a89cc;
+    color: rgba(0, 0, 0, 0.4);
     &:hover{
-        color: #1e3799;
+        color: #6a89cc;
     }
 `;
 
