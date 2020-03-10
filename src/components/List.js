@@ -98,6 +98,7 @@ const ScrollView = styled.div`
     padding: 0 15px;
     max-height: 48vh;
     overflow-y: auto;
+    min-height: 1px;
 `;
 
 const CardAdder = styled.div`
