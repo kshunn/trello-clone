@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import List from './List';
 import {Button, Input, ADD, DELETE, EMPTY} from '../routes/Home';
-import { DragDropContext } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 export default function Board({boardKey, boardName, listList, functionSet}) {
     const [text, setText] = useState("");
@@ -21,31 +21,56 @@ export default function Board({boardKey, boardName, listList, functionSet}) {
         setText("");
     };
     const onDragEnd = result => {
-        const { destination, source } = result;
+        const { destination, source, type } = result;
         if(!destination){
             return;
         }
         if(destination.droppableId===source.droppableId && destination.index===source.index){
             return;
         }
-        functionSet.switchIndex(boardKey, source.droppableId, destination.droppableId, source.index, destination.index);
+        if(type==='card'){
+            functionSet.switchIndex(boardKey, source.droppableId, destination.droppableId, source.index, destination.index);
+            return;
+        }
+        else if(type==='list'){
+            functionSet.switchIndex(boardKey, EMPTY, EMPTY, source.index, destination.index);
+            return;
+        }
     };
 
     return(
         <BoardContainer>
             <DragDropContext onDragEnd={onDragEnd}>
-                {listList.map(list => (
-                    <ListWrapper key={list.listKey}>
-                        <List
-                            boardKey={boardKey} 
-                            listKey={list.listKey} 
-                            listName={list.listName} 
-                            cardList={list.cardList} 
-                            functionSet={functionSet}
-                        />
-                        <Button onClick={() => deleteList(list.listKey)}><i className={DELETE}></i></Button>
-                    </ListWrapper>
-                ))}
+                <Droppable droppableId="lists" direction="horizontal" type="list">
+                    {(provided) => (
+                        <ListField
+                            {...provided.droppableProps}
+                            ref={provided.innerRef}
+                        >
+                            {listList.map((list, index) => (
+                                <Draggable key={list.listKey} draggableId={list.listKey} index={index}>
+                                    {(provided) => (
+                                        <ListWrapper
+                                            {...provided.draggableProps}
+                                            ref={provided.innerRef}
+                                        >
+                                            <List
+                                                boardKey={boardKey} 
+                                                listKey={list.listKey} 
+                                                listName={list.listName} 
+                                                cardList={list.cardList} 
+                                                functionSet={functionSet}
+                                                provided={provided}
+                                            />
+                                            <Button onClick={() => deleteList(list.listKey)}><i className={DELETE}></i></Button>
+                                        </ListWrapper>
+                                    )}
+                                </Draggable>        
+                            ))}
+                            {provided.placeholder}
+                        </ListField>
+                    )}
+                </Droppable>
             </DragDropContext>
             <div>
                 <ListAdder>
@@ -89,10 +114,16 @@ const ListWrapper = styled.div`
     background-color: white;
     min-width: 210px;
     max-width: 210px;
+    flex-grow: 0;
 `;
 
 const ListInput = styled(Input)`
     margin-bottom: 5px;
     text-align: center;
     font-weight: bold;
+`;
+
+const ListField = styled.div`
+    display: flex;
+    align-items: flex-start;
 `;

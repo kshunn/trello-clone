@@ -132,27 +132,40 @@ function App() {
     const switchIndex = (boardKey, startListKey, endListKey, startIndex, endIndex) => {
       const newBoardList = [...boardList];
       let dragCard = null;
-      newBoardList.forEach(board => {
-        if(board.boardKey===boardKey){
-          board.listList.forEach(list => {
-            if(list.listKey===startListKey){
-              dragCard = list.cardList[startIndex];
-              list.cardList.splice(startIndex, 1);
-              if(startListKey===endListKey){
-                list.cardList.splice(endIndex, 0, dragCard);
+      let dragList = null;
+      if(startListKey !== EMPTY){
+        newBoardList.forEach(board => {
+          if(board.boardKey===boardKey){
+            board.listList.forEach(list => {
+              if(list.listKey===startListKey){
+                dragCard = list.cardList[startIndex];
+                list.cardList.splice(startIndex, 1);
+                if(startListKey===endListKey){
+                  list.cardList.splice(endIndex, 0, dragCard);
+                }
+                else{
+                  board.listList.forEach(list => {
+                    if(list.listKey===endListKey){
+                      list.cardList.splice(endIndex, 0, dragCard);
+                    }
+                  });
+                }
               }
-              else{
-                board.listList.forEach(list => {
-                  if(list.listKey===endListKey){
-                    list.cardList.splice(endIndex, 0, dragCard);
-                  }
-                });
-              }
-            }
-          });
-        }
-      });
-      setBoardList(newBoardList);
+            });
+          }
+        });
+        setBoardList(newBoardList);
+      }
+      else{
+        newBoardList.forEach(board => {
+          if(board.boardKey===boardKey){
+            dragList = board.listList[startIndex];
+            board.listList.splice(startIndex, 1);
+            board.listList.splice(endIndex, 0, dragList);
+          }
+        });
+        setBoardList(newBoardList);
+      }
     };
 
     const functionSet = {

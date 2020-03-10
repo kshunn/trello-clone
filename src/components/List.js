@@ -4,7 +4,7 @@ import Card from './Card';
 import {Button, Input, ADD, DELETE, PALETTE} from '../routes/Home';
 import {Droppable, Draggable} from 'react-beautiful-dnd';
 
-export default function List({boardKey, listKey, listName, cardList, functionSet}){
+export default function List({boardKey, listKey, listName, cardList, functionSet, provided}){
     const [text, setText] = useState("");
     const createNewCard = text => {
         functionSet.create(boardKey, listKey, text);
@@ -22,8 +22,8 @@ export default function List({boardKey, listKey, listName, cardList, functionSet
     };
     return (
         <ListContainer>
-            <h4>{listName}</h4>
-            <Droppable droppableId={listKey}>
+            <h4 {...provided.dragHandleProps}>{listName}</h4>
+            <Droppable droppableId={listKey} type="card">
                 {(provided) => (
                     <ScrollView
                         ref={provided.innerRef}
