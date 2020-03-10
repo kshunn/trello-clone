@@ -25,7 +25,8 @@ React
 * [x] Card scrolling feature
 * [x] List drag and drop feature
 * [x] Card drag and drop feature
-* [ ] Board pinning feature
+* [x] Board pinning feature
 * [ ] Board name editing feature
 * [ ] List name editing feature
 * [ ] Manual for users
+* [ ] File attachment feature
