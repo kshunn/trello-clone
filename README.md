@@ -28,3 +28,4 @@ React
 * [ ] Board pinning feature
 * [ ] Board name editing feature
 * [ ] List name editing feature
+* [ ] Manual for users
