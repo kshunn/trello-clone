@@ -170,9 +170,4 @@ const BoardsWrapper = styled.div`
     margin: 10px 0;
 `;
 
-const Buttons = styled.div`
-    display: flex;
-`;
-
-
 

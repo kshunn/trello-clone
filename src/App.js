@@ -113,7 +113,7 @@ function App() {
       }
     };
 
-    const edit = (boardKey, listKey, cardKey) => {
+    const edit = (boardKey, listKey, cardKey, text) => {
       if(boardKey===EMPTY){
         return;
       }
@@ -122,7 +122,7 @@ function App() {
           const newBoardList = [...boardList];
           newBoardList.forEach(board => {
             if(board.boardKey===boardKey){
-              board.boardName = 'Edit';
+              board.boardName = text;
             }
           });
           setBoardList(newBoardList);   
@@ -133,7 +133,7 @@ function App() {
             if(board.boardKey===boardKey){
               board.listList.forEach(list => {
                 if(list.listKey===listKey){
-                  list.listName = 'Edit';
+                  list.listName = text;
                 }
               });
             }
@@ -148,7 +148,7 @@ function App() {
                 if(list.listKey===listKey){
                   list.cardList.forEach(card => {
                     if(card.cardKey===cardKey){
-                      card.context = 'Edit';
+                      card.context = text;
                     }
                   });
                 }

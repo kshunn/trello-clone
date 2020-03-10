@@ -1,20 +1,43 @@
-import React from 'react';
+import React, {useState, useRef} from 'react';
 import styled from 'styled-components';
 import Board from '../components/Board';
 import {Link} from 'react-router-dom';
-
-const PALETTE = ['#E9ECE5', '#C0DFD9', '#B3C2BF', '#3B3A36'];
+import {PALETTE, EMPTY} from './Home';
+import ContentEditable from 'react-contenteditable';
 
 export default function BoardPage({location, history, boardList, functionSet}){
+    const board = location.state ? boardList.find(board => board.boardKey===location.state.key) : null;
+    const [nextBoardName, setNextBoardName] = useState(board ? board.boardName : null);
+    const nextBoardRef = useRef();
     if(location.state===undefined){
         history.push("/");
         return null;
     }
-    const board = boardList.find(board => board.boardKey===location.state.key);
+    const editBoardName = () => {
+        const nextBoardName = nextBoardRef.current.innerHTML;
+        if(!nextBoardName){
+            setNextBoardName(board.boardName);
+            return;
+        }
+        else functionSet.edit(location.state.key, EMPTY, EMPTY, nextBoardName);
+    };
+    const changeText = e => {
+        setNextBoardName(e.target.value);
+    }
     return (
         <BoardPageWrapper>
             <Header>
-                <BoardTitle>{location.state.name}</BoardTitle>
+                {/* <BoardTitle>{location.state.name}</BoardTitle> */}
+                <BoardTitle>
+                    <StyledEditable
+                        innerRef={nextBoardRef}
+                        html={nextBoardName}
+                        disabled={false}
+                        onChange={changeText}
+                        onBlur={editBoardName}
+                        spellCheck='false'
+                    />
+                </BoardTitle>
                 <ToHome to={{pathname: '/'}}><i className="fas fa-home"></i></ToHome>
             </Header>
             <Board 
@@ -39,6 +62,12 @@ const BoardTitle = styled.h1`
     margin: auto;
     padding: 10px 20px;
     color: ${PALETTE[3]};
+    cursor: pointer;
+`;
+
+const StyledEditable = styled(ContentEditable)`
+    padding: 10px;
+    outline-color: ${PALETTE[3]};    
 `;
 
 const ToHome = styled(Link)`
