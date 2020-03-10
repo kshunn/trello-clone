@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Card from './Card';
-import {Button, Input} from '../routes/Home';
-
-const PALETTE = ['#E9ECE5', '#C0DFD9', '#B3C2BF', '#3B3A36'];
-
-const ADD = "fas fa-plus";
-const DELETE = "fas fa-trash";
+import {Button, Input, ADD, DELETE, PALETTE} from '../routes/Home';
 
 export default function List({boardKey, listKey, listName, cardList, create, remove, toggleDone}){
     const [text, setText] = useState("");

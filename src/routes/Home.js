@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
-import {EMPTY} from '../App';
 
-const ADD = "fas fa-plus";
-const DELETE = "fas fa-trash";
-const PALETTE = ['#E9ECE5', '#C0DFD9', '#B3C2BF', '#3B3A36'];
+export const ADD = 'fas fa-plus';
+export const DELETE = "fas fa-trash";
+export const PALETTE = ['#E9ECE5', '#C0DFD9', '#B3C2BF', '#3B3A36'];
+export const EMPTY =  '---';
 
 export default function Home({boardList, create, remove}){
     const [text, setText] = useState("");

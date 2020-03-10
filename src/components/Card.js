@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Button} from '../routes/Home';
+import {Button, PALETTE} from '../routes/Home';
 
-const PALETTE = ['#E9ECE5', '#C0DFD9', '#B3C2BF', '#3B3A36'];
 const CHECK = "fas fa-check";
 const DONE = "fas fa-times";
 

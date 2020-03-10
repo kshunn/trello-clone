@@ -5,6 +5,7 @@ import Home from './routes/Home';
 import BoardPage from './routes/BoardPage';
 
 const PALETTE = ['#E9ECE5', '#C0DFD9', '#B3C2BF', '#3B3A36'];
+const EMPTY =  '---';
 
 const GlobalStyle = createGlobalStyle`
     body{
@@ -27,8 +28,6 @@ const GlobalStyle = createGlobalStyle`
       border-radius: 10px;
     }
 `;
-
-export const EMPTY =  '---';
 
 function App() {
     const [boardList, setBoardList] = React.useState(

@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import List from './List';
-import {EMPTY} from '../App';
-import {Button, Input} from '../routes/Home';
-
-const ADD = "fas fa-plus";
-const DELETE = "fas fa-trash";
+import {Button, Input, ADD, DELETE, EMPTY} from '../routes/Home';
 
 export default function Board({boardKey, boardName, listList, create, remove, toggleDone}) {
     const [text, setText] = useState("");
