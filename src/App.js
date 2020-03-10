@@ -44,7 +44,7 @@ function App() {
       if(boardKey===EMPTY){ //createBoard
         const check = boardList.filter(board => board.boardName === text);
         if(!check.length && text.length){
-            const newBoardList = boardList.concat([{boardKey: text.concat(Date.now()), boardName: text, listList: []}]);
+            const newBoardList = boardList.concat([{boardKey: text.concat(Date.now()), boardName: text, listList: [], pin: false}]);
             setBoardList(newBoardList);
         } 
       }
@@ -113,6 +113,63 @@ function App() {
       }
     };
 
+    const edit = (boardKey, listKey, cardKey) => {
+      if(boardKey===EMPTY){
+        return;
+      }
+      else{
+        if(listKey===EMPTY){ //editBoard
+          const newBoardList = [...boardList];
+          newBoardList.forEach(board => {
+            if(board.boardKey===boardKey){
+              board.boardName = 'Edit';
+            }
+          });
+          setBoardList(newBoardList);   
+        }
+        else if(cardKey===EMPTY){ //editList
+          const newBoardList = [...boardList];
+          newBoardList.forEach(board => {
+            if(board.boardKey===boardKey){
+              board.listList.forEach(list => {
+                if(list.listKey===listKey){
+                  list.listName = 'Edit';
+                }
+              });
+            }
+          });
+          setBoardList(newBoardList);
+        }
+        else{ //removeCard
+          const newBoardList = [...boardList];
+          newBoardList.forEach(board => {
+            if(board.boardKey===boardKey){
+              board.listList.forEach(list => {
+                if(list.listKey===listKey){
+                  list.cardList.forEach(card => {
+                    if(card.cardKey===cardKey){
+                      card.context = 'Edit';
+                    }
+                  });
+                }
+              });
+            }
+          });
+          setBoardList(newBoardList);
+        }
+      }
+    };
+
+    const togglePin = boardKey => {
+      const newBoardList = [...boardList];
+      newBoardList.forEach(board => {
+        if(board.boardKey===boardKey){
+          board.pin = !board.pin;
+        }
+      })
+      setBoardList(newBoardList);
+    }
+
     const toggleDone = (boardKey, listKey, cardKey) => {
       const newBoardList = [...boardList];
       newBoardList.forEach(board => {
@@ -173,6 +230,8 @@ function App() {
     const functionSet = {
       create: create,
       remove: remove,
+      edit: edit,
+      togglePin: togglePin,
       toggleDone: toggleDone,
       switchIndex: switchIndex,
     };

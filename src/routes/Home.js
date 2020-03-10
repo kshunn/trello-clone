@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 
 export const ADD = 'fas fa-plus';
 export const DELETE = "fas fa-trash";
+const PIN = "fas fa-thumbtack";
 export const PALETTE = ['#E9ECE5', '#C0DFD9', '#B3C2BF', '#3B3A36'];
 export const EMPTY =  '---';
 
@@ -24,7 +25,29 @@ export default function Home({boardList, functionSet}){
         setText("");
     };
     return(
-        <Container> 
+        <Container>
+            <BoardsWrapper>
+                <Title>Pinned Boards</Title> 
+                <Boards>  
+                {boardList.map(board => (
+                    board.pin ? (
+                        <BoardLink key={board.boardKey}>
+                            <ToBoard to={{
+                                pathname: `/board/${board.boardName}-board`,
+                                state:{
+                                    key: board.boardKey,
+                                    name: board.boardName
+                                }
+                            }}>
+                                {board.boardName}
+                            </ToBoard>
+                            <Button onClick={() => functionSet.togglePin(board.boardKey)}><i className={PIN}></i></Button>
+                            <Button onClick={() => deleteBoard(board.boardKey)}><i className={DELETE}></i></Button>
+                        </BoardLink>
+                    ) : null
+                ))}
+                </Boards>   
+            </BoardsWrapper> 
             <BoardsWrapper>
                 <Title>Boards</Title> 
                 <Boards>  
@@ -39,6 +62,7 @@ export default function Home({boardList, functionSet}){
                         }}>
                             {board.boardName}
                         </ToBoard>
+                        <Button onClick={() => functionSet.togglePin(board.boardKey)}><i className={PIN}></i></Button>
                         <Button onClick={() => deleteBoard(board.boardKey)}><i className={DELETE}></i></Button>
                     </BoardLink>
                 ))}
@@ -105,8 +129,8 @@ const BoardAdder = styled.div`
     margin: 10px;
     padding: 20px;
     border-radius: 20px;
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 80px;
     background-color: white;
 `;
 
@@ -123,12 +147,11 @@ const BoardLink = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
     margin: 10px;
     padding: 20px;
     border-radius: 20px;
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 80px;
     background-color: white;
 `;
 
@@ -144,6 +167,11 @@ const BoardsWrapper = styled.div`
     align-items: center;
     border-radius: 20px;
     background-color: ${PALETTE[1]};
+    margin: 10px 0;
+`;
+
+const Buttons = styled.div`
+    display: flex;
 `;
 
 
