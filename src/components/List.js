@@ -34,6 +34,15 @@ export default function List({boardKey, listKey, listName, cardList, functionSet
         }
         else functionSet.edit(boardKey, listKey, EMPTY, nextListName);
     }
+    const disableNewLines = e => {
+        const keyCode = e.keyCode || e.which;
+        if (keyCode === 13) {
+          e.returnValue = false;
+          if (e.preventDefault){
+              e.preventDefault();
+          }
+        }
+    }
     return (
         <ListContainer>
             <h4>
@@ -44,6 +53,7 @@ export default function List({boardKey, listKey, listName, cardList, functionSet
                     onChange={changeText}
                     onBlur={editListName}
                     spellCheck='false'
+                    onKeyPress={disableNewLines}
                 />
             </h4>
             <Droppable droppableId={listKey} type="card">

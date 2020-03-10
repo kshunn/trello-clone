@@ -24,6 +24,15 @@ export default function BoardPage({location, history, boardList, functionSet}){
     const changeText = e => {
         setNextBoardName(e.target.value);
     }
+    const disableNewLines = e => {
+        const keyCode = e.keyCode || e.which;
+        if (keyCode === 13) {
+          e.returnValue = false;
+          if (e.preventDefault){
+              e.preventDefault();
+          }
+        }
+    }
     return (
         <BoardPageWrapper>
             <Header>
@@ -35,6 +44,7 @@ export default function BoardPage({location, history, boardList, functionSet}){
                         disabled={false}
                         onChange={changeText}
                         onBlur={editBoardName}
+                        onKeyPress={disableNewLines}
                         spellCheck='false'
                     />
                 </BoardTitle>
