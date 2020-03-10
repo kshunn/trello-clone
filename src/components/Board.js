@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import List from './List';
 import {Button, Input, ADD, DELETE, EMPTY} from '../routes/Home';
 
-export default function Board({boardKey, boardName, listList, create, remove, toggleDone}) {
+export default function Board({boardKey, boardName, listList, functionSet}) {
     const [text, setText] = useState("");
     const createNewList = text => {
-        create(boardKey, EMPTY, text);
+        functionSet.create(boardKey, EMPTY, text);
     };
     const deleteList = (key) => {
-        remove(boardKey, key, EMPTY);
+        functionSet.remove(boardKey, key, EMPTY);
     };
     const onChange = e =>{
         setText(e.target.value);
@@ -28,9 +28,7 @@ export default function Board({boardKey, boardName, listList, create, remove, to
                         listKey={list.listKey} 
                         listName={list.listName} 
                         cardList={list.cardList} 
-                        create={create} 
-                        remove={remove} 
-                        toggleDone={toggleDone}
+                        functionSet={functionSet}
                     />
                     <Button onClick={() => deleteList(list.listKey)}><i className={DELETE}></i></Button>
                 </ListWrapper>

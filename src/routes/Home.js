@@ -7,13 +7,13 @@ export const DELETE = "fas fa-trash";
 export const PALETTE = ['#E9ECE5', '#C0DFD9', '#B3C2BF', '#3B3A36'];
 export const EMPTY =  '---';
 
-export default function Home({boardList, create, remove}){
+export default function Home({boardList, functionSet}){
     const [text, setText] = useState("");
     const createNewBoard = text => {
-        create(EMPTY, EMPTY, text);
+        functionSet.create(EMPTY, EMPTY, text);
     };
     const deleteBoard = key => {
-        remove(key, EMPTY, EMPTY);
+        functionSet.remove(key, EMPTY, EMPTY);
     };
     const onChange = e =>{
         setText(e.target.value);

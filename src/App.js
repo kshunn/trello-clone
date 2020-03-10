@@ -130,12 +130,18 @@ function App() {
       setBoardList(newBoardList);
     };
 
+    const functionSet = {
+      create: create,
+      remove: remove,
+      toggleDone: toggleDone
+    };
+
     return (
         <>
             <GlobalStyle />
             <HashRouter>
-              <Route path="/" exact={true} render={props => <Home {...props} boardList={boardList} create={create} remove={remove}/>} />
-              <Route path="/board/:boardName" render={props => <BoardPage {...props} boardList={boardList} create={create} remove={remove} toggleDone={toggleDone}/>} />
+              <Route path="/" exact={true} render={props => <Home {...props} boardList={boardList} functionSet={functionSet} />} />
+              <Route path="/board/:boardName" render={props => <BoardPage {...props} boardList={boardList} functionSet={functionSet}/>} />
             </HashRouter>
         </>
     );

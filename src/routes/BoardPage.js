@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 
 const PALETTE = ['#E9ECE5', '#C0DFD9', '#B3C2BF', '#3B3A36'];
 
-export default function BoardPage({location, history, boardList, create, remove, toggleDone}){
+export default function BoardPage({location, history, boardList, functionSet}){
     if(location.state===undefined){
         history.push("/");
         return null;
@@ -21,9 +21,7 @@ export default function BoardPage({location, history, boardList, create, remove,
                 boardKey={location.state.key} 
                 boardName={location.state.name} 
                 listList={board.listList} 
-                create={create} 
-                remove={remove}
-                toggleDone={toggleDone}
+                functionSet={functionSet}
             />
         </BoardPageWrapper>
     );

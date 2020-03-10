@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import Card from './Card';
 import {Button, Input, ADD, DELETE, PALETTE} from '../routes/Home';
 
-export default function List({boardKey, listKey, listName, cardList, create, remove, toggleDone}){
+export default function List({boardKey, listKey, listName, cardList, functionSet}){
     const [text, setText] = useState("");
     const createNewCard = text => {
-        create(boardKey, listKey, text);
+        functionSet.create(boardKey, listKey, text);
     };
     const onChange = e =>{
         setText(e.target.value);
@@ -17,7 +17,7 @@ export default function List({boardKey, listKey, listName, cardList, create, rem
         setText("");
     };
     const deleteCard = (key) => {
-        remove(boardKey, listKey, key);
+        functionSet.remove(boardKey, listKey, key);
     };
     return (
         <ListContainer>
@@ -31,7 +31,7 @@ export default function List({boardKey, listKey, listName, cardList, create, rem
                         cardKey={card.cardKey}
                         content={card.content}
                         done={card.done}
-                        toggleDone={toggleDone}
+                        functionSet={functionSet}
                     />
                     <CardButton onClick={()=>deleteCard(card.cardKey)}><i className={DELETE}></i></CardButton>
                 </CardWrapper>
