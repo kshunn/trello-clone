@@ -38,7 +38,7 @@ export default function List({boardKey, listKey, listName, cardList, create, rem
                         done={card.done}
                         toggleDone={toggleDone}
                     />
-                    <Button onClick={()=>deleteCard(card.cardKey)}><i className={DELETE}></i></Button>
+                    <CardButton onClick={()=>deleteCard(card.cardKey)}><i className={DELETE}></i></CardButton>
                 </CardWrapper>
             ))}
             </ScrollView>
@@ -103,5 +103,11 @@ const CardInput = styled(Input)`
     color: white;
     &::placeholder{
         color: ${PALETTE[2]};
+    }
+`;
+
+const CardButton = styled(Button)`
+    &:hover{
+        color: ${PALETTE[0]};
     }
 `;

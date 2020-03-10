@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import List from './List';
-import {EMPTY, COLORS} from '../App';
+import {EMPTY} from '../App';
 import {Button, Input} from '../routes/Home';
 
 const ADD = "fas fa-plus";
