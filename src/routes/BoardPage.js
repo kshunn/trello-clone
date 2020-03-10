@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import Board from '../components/Board';
 import {Link} from 'react-router-dom';
 
+const PALETTE = ['#E9ECE5', '#C0DFD9', '#B3C2BF', '#3B3A36'];
+
 export default function BoardPage({location, history, boardList, create, remove, toggleDone}){
     if(location.state===undefined){
         history.push("/");
@@ -38,14 +40,14 @@ const BoardTitle = styled.h1`
     font-size: 30px;
     margin: auto;
     padding: 10px 20px;
-    color: #3b3a36;
+    color: ${PALETTE[3]};
 `;
 
 const ToHome = styled(Link)`
     font-size: 30px;
-    color: #3b3a36;
+    color: ${PALETTE[3]};
     &:hover{
-        color: #b3c2bf;
+        color: ${PALETTE[2]};
     }
 `;
 
@@ -55,5 +57,5 @@ const Header = styled.header`
     justify-content: center;
     align-items: center;
     padding: 10px 20px;
-    background-color: #c0dfd9;
+    background-color: ${PALETTE[1]};
 `;

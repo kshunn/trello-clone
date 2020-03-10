@@ -4,16 +4,18 @@ import { createGlobalStyle } from "styled-components";
 import Home from './routes/Home';
 import BoardPage from './routes/BoardPage';
 
+const PALETTE = ['#E9ECE5', '#C0DFD9', '#B3C2BF', '#3B3A36'];
+
 const GlobalStyle = createGlobalStyle`
     body{
         padding: 0;
         margin: 0;
         box-sizing: border-box;
         font-family: 'Lora', 'Noto Serif KR';
-        background-color: #e9ece5;
+        background-color: ${PALETTE[0]};
     }
     ::-webkit-scrollbar{
-      background: #f1f1f1;
+      background: ${PALETTE[2]};
       height: 14px;
     }
     ::-webkit-scrollbar-track{
@@ -21,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
       border-radius: 10px;
     }
     ::-webkit-scrollbar-thumb{
-      background: #8395a7;
+      background: rgba(255, 255, 255, 0.5);
       border-radius: 10px;
     }
 `;

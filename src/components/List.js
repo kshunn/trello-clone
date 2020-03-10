@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import Card from './Card';
 import {Button, Input} from '../routes/Home';
 
+const PALETTE = ['#E9ECE5', '#C0DFD9', '#B3C2BF', '#3B3A36'];
+
 const ADD = "fas fa-plus";
 const DELETE = "fas fa-trash";
 
@@ -67,9 +69,9 @@ const CardWrapper = styled.div`
     width: 100%;
     margin: 5px 0;
     border-radius: 5px;
-    background-color: #b3c2bf;
+    background-color: ${PALETTE[2]};
     padding: 10px;
-    color: #3b3a36;
+    color: ${PALETTE[3]};
 `;
 
 const ScrollView = styled.div`
@@ -91,7 +93,7 @@ const CardAdder = styled.div`
     border-radius: 5px;
     width: 100%;
     margin: 5px 0;
-    background-color: #e9ece5;
+    background-color: ${PALETTE[0]};
     padding: 10px;
     color: white;
 `;
@@ -100,6 +102,6 @@ const CardInput = styled(Input)`
     width: 100%;
     color: white;
     &::placeholder{
-        color: #b3c2bf;
+        color: ${PALETTE[2]};
     }
 `;

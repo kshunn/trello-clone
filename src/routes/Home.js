@@ -5,6 +5,7 @@ import {EMPTY} from '../App';
 
 const ADD = "fas fa-plus";
 const DELETE = "fas fa-trash";
+const PALETTE = ['#E9ECE5', '#C0DFD9', '#B3C2BF', '#3B3A36'];
 
 export default function Home({boardList, create, remove}){
     const [text, setText] = useState("");
@@ -55,10 +56,10 @@ export const Button = styled.button`
     border: none;
     background: none;
     &:hover{
-        color: #b3c2bf;
+        color: ${PALETTE[2]};
     }
     cursor: pointer;
-    color: #3b3a36;    
+    color: ${PALETTE[3]};    
 `;
 
 export const Input = styled.input`
@@ -67,12 +68,12 @@ export const Input = styled.input`
     background: none;
     font-family: 'Lora', 'Noto Serif KR';
     &::placeholder{
-        color: #b3c2bf;
+        color: ${PALETTE[2]};
     }
 `;
 
 const Title = styled.h2`
-    color: #3b3a36;
+    color: ${PALETTE[3]};
 `;
 
 const BoardInput = styled(Input)`
@@ -84,10 +85,10 @@ const BoardInput = styled(Input)`
 `;
 
 const ToBoard = styled(Link)`
-    color: #3b3a36;
+    color: ${PALETTE[3]};
     text-decoration: none;
     &:hover{
-        color: #b3c2bf;
+        color: ${PALETTE[2]};
     }
     margin: auto;
     font-weight: bold;
@@ -142,7 +143,7 @@ const BoardsWrapper = styled.div`
     padding: 10px;
     align-items: center;
     border-radius: 20px;
-    background-color: #c0dfd9;
+    background-color: ${PALETTE[1]};
 `;
 
 
