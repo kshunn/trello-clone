@@ -36,13 +36,13 @@ export default function List({boardKey, listKey, listName, cardList, create, rem
                         done={card.done}
                         toggleDone={toggleDone}
                     />
-                    <WhiteButton onClick={()=>deleteCard(card.cardKey)}><i className={DELETE}></i></WhiteButton>
+                    <Button onClick={()=>deleteCard(card.cardKey)}><i className={DELETE}></i></Button>
                 </CardWrapper>
             ))}
             </ScrollView>
             <CardAdder>
                 <CardInput type="text" value={text} onChange={onChange} placeholder='Add a card..' />
-                <WhiteButton onClick={onSubmit}><i className={ADD}></i></WhiteButton>
+                <Button onClick={onSubmit}><i className={ADD}></i></Button>
             </CardAdder>
         </ListContainer>
     );
@@ -67,9 +67,9 @@ const CardWrapper = styled.div`
     width: 100%;
     margin: 5px 0;
     border-radius: 5px;
-    background-color: #6a89cc;
+    background-color: #b3c2bf;
     padding: 10px;
-    color: white;
+    color: #3b3a36;
 `;
 
 const ScrollView = styled.div`
@@ -91,7 +91,7 @@ const CardAdder = styled.div`
     border-radius: 5px;
     width: 100%;
     margin: 5px 0;
-    background-color: #6a89cc;
+    background-color: #e9ece5;
     padding: 10px;
     color: white;
 `;
@@ -100,13 +100,6 @@ const CardInput = styled(Input)`
     width: 100%;
     color: white;
     &::placeholder{
-        color: #dcdde1;
-    }
-`;
-
-export const WhiteButton = styled(Button)`
-    color: white;
-    &:hover{
-        color: #dcdde1;
+        color: #b3c2bf;
     }
 `;

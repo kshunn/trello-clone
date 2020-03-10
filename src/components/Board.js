@@ -67,7 +67,7 @@ const ListAdder = styled.div`
     align-items: center;
     margin: 0 20px 0 10px;
     border-radius: 10px;
-    background-color: #f1f1f1;
+    background-color: white;
     padding: 10px 10px 5px 10px;
     width: 210px;
 `;
@@ -78,7 +78,7 @@ const ListWrapper = styled.div`
     margin: 0 10px;
     border-radius: 10px;
     padding: 10px;
-    background-color: #f1f1f1;
+    background-color: white;
     min-width: 210px;
     max-width: 210px;
 `;

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {WhiteButton} from './List';
+import {Button} from '../routes/Home';
 
 const CHECK = "fas fa-check";
 const DONE = "fas fa-times";
@@ -10,7 +10,7 @@ export default function Card({ boardKey, listKey, cardKey, content, done, toggle
     return (
         <>
             <Cardtext done={done}>{content}</Cardtext>
-            <WhiteButton done={done} onClick={()=>toggleDone(boardKey, listKey, cardKey)}><i className={ICON}></i></WhiteButton>
+            <Button done={done} onClick={()=>toggleDone(boardKey, listKey, cardKey)}><i className={ICON}></i></Button>
         </>
     );
 }

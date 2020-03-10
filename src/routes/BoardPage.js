@@ -38,14 +38,14 @@ const BoardTitle = styled.h1`
     font-size: 30px;
     margin: auto;
     padding: 10px 20px;
-    color: rgba(0, 0, 0, 0.4);
+    color: #3b3a36;
 `;
 
 const ToHome = styled(Link)`
     font-size: 30px;
-    color: rgba(0, 0, 0, 0.4);
+    color: #3b3a36;
     &:hover{
-        color: #6a89cc;
+        color: #b3c2bf;
     }
 `;
 
@@ -55,5 +55,5 @@ const Header = styled.header`
     justify-content: center;
     align-items: center;
     padding: 10px 20px;
-    background: rgba(255, 255, 255, 0.5);
+    background-color: #c0dfd9;
 `;

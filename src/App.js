@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
         margin: 0;
         box-sizing: border-box;
         font-family: 'Lora', 'Noto Serif KR';
-        background-color: #c8d6e5;
+        background-color: #e9ece5;
     }
     ::-webkit-scrollbar{
       background: #f1f1f1;

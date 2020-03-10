@@ -55,9 +55,10 @@ export const Button = styled.button`
     border: none;
     background: none;
     &:hover{
-        color: #576574;
+        color: #b3c2bf;
     }
-    cursor: pointer;    
+    cursor: pointer;
+    color: #3b3a36;    
 `;
 
 export const Input = styled.input`
@@ -66,12 +67,12 @@ export const Input = styled.input`
     background: none;
     font-family: 'Lora', 'Noto Serif KR';
     &::placeholder{
-        color: #576574;
+        color: #b3c2bf;
     }
 `;
 
 const Title = styled.h2`
-    color: white;
+    color: #3b3a36;
 `;
 
 const BoardInput = styled(Input)`
@@ -83,10 +84,10 @@ const BoardInput = styled(Input)`
 `;
 
 const ToBoard = styled(Link)`
-    color: black;
+    color: #3b3a36;
     text-decoration: none;
     &:hover{
-        color: #576574;
+        color: #b3c2bf;
     }
     margin: auto;
     font-weight: bold;
@@ -105,7 +106,7 @@ const BoardAdder = styled.div`
     border-radius: 20px;
     width: 150px;
     height: 150px;
-    background-color: #f1f1f1;
+    background-color: white;
 `;
 
 const Container = styled.div`
@@ -127,7 +128,7 @@ const BoardLink = styled.div`
     border-radius: 20px;
     width: 150px;
     height: 150px;
-    background-color: #f1f1f1;
+    background-color: white;
 `;
 
 const Boards = styled.div`
@@ -141,7 +142,7 @@ const BoardsWrapper = styled.div`
     padding: 10px;
     align-items: center;
     border-radius: 20px;
-    background-color: #6a89cc;
+    background-color: #c0dfd9;
 `;
 
 
