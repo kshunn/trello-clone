@@ -94,6 +94,7 @@ export const Input = styled.input`
     &::placeholder{
         color: ${PALETTE[2]};
     }
+    outline-color: ${PALETTE[3]};
 `;
 
 const Title = styled.h2`

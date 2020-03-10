@@ -53,6 +53,7 @@ export default function Board({boardKey, boardName, listList, functionSet}) {
                                         <ListWrapper
                                             {...provided.draggableProps}
                                             ref={provided.innerRef}
+                                            {...provided.dragHandleProps}
                                         >
                                             <List
                                                 boardKey={boardKey} 
@@ -60,9 +61,10 @@ export default function Board({boardKey, boardName, listList, functionSet}) {
                                                 listName={list.listName} 
                                                 cardList={list.cardList} 
                                                 functionSet={functionSet}
-                                                provided={provided}
                                             />
-                                            <Button onClick={() => deleteList(list.listKey)}><i className={DELETE}></i></Button>
+                                            <Button onClick={() => deleteList(list.listKey)}>
+                                                <i className={DELETE}></i>
+                                            </Button>
                                         </ListWrapper>
                                     )}
                                 </Draggable>        

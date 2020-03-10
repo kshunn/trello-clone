@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import Card from './Card';
-import {Button, Input, ADD, DELETE, PALETTE} from '../routes/Home';
+import {Button, Input, ADD, DELETE, PALETTE, EMPTY} from '../routes/Home';
 import {Droppable, Draggable} from 'react-beautiful-dnd';
+import ContentEditable from 'react-contenteditable';
 
-export default function List({boardKey, listKey, listName, cardList, functionSet, provided}){
+export default function List({boardKey, listKey, listName, cardList, functionSet}){
     const [text, setText] = useState("");
+    const [nextListName, setNextListName] = useState(listName);
+    const nextListNameRef = useRef();
     const createNewCard = text => {
         functionSet.create(boardKey, listKey, text);
     };
@@ -20,9 +23,29 @@ export default function List({boardKey, listKey, listName, cardList, functionSet
     const deleteCard = (key) => {
         functionSet.remove(boardKey, listKey, key);
     };
+    const changeText = e => {
+        setNextListName(e.target.value);
+    };
+    const editListName = () => {
+        const nextListName = nextListNameRef.current.innerHTML;
+        if(!nextListName){
+            setNextListName(listName);
+            return;
+        }
+        else functionSet.edit(boardKey, listKey, EMPTY, nextListName);
+    }
     return (
         <ListContainer>
-            <h4 {...provided.dragHandleProps}>{listName}</h4>
+            <h4>
+                <StyledEditable
+                    innerRef={nextListNameRef}
+                    html={nextListName}
+                    disabled={false}
+                    onChange={changeText}
+                    onBlur={editListName}
+                    spellCheck='false'
+                />
+            </h4>
             <Droppable droppableId={listKey} type="card">
                 {(provided) => (
                     <ScrollView
@@ -47,7 +70,9 @@ export default function List({boardKey, listKey, listName, cardList, functionSet
                                             done={card.done}
                                             functionSet={functionSet}
                                         />
-                                        <CardButton onClick={()=>deleteCard(card.cardKey)}><i className={DELETE}></i></CardButton>
+                                        <CardButton onClick={()=>deleteCard(card.cardKey)}>
+                                            <i className={DELETE}></i>
+                                        </CardButton>
                                     </CardWrapper>
                                 )}
 
@@ -121,4 +146,9 @@ const CardButton = styled(Button)`
     &:hover{
         color: ${PALETTE[0]};
     }
+`;
+
+const StyledEditable = styled(ContentEditable)`
+    padding: 10px;  
+    outline-color: ${PALETTE[3]};  
 `;

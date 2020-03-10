@@ -27,6 +27,6 @@ React
 * [x] Card drag and drop feature
 * [x] Board pinning feature
 * [x] Board name editing feature
-* [ ] List name editing feature
+* [x] List name editing feature
 * [ ] Manual for users
 * [ ] File attachment feature

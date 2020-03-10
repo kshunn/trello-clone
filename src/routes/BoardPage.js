@@ -8,13 +8,13 @@ import ContentEditable from 'react-contenteditable';
 export default function BoardPage({location, history, boardList, functionSet}){
     const board = location.state ? boardList.find(board => board.boardKey===location.state.key) : null;
     const [nextBoardName, setNextBoardName] = useState(board ? board.boardName : null);
-    const nextBoardRef = useRef();
+    const nextBoardNameRef = useRef();
     if(location.state===undefined){
         history.push("/");
         return null;
     }
     const editBoardName = () => {
-        const nextBoardName = nextBoardRef.current.innerHTML;
+        const nextBoardName = nextBoardNameRef.current.innerHTML;
         if(!nextBoardName){
             setNextBoardName(board.boardName);
             return;
@@ -30,7 +30,7 @@ export default function BoardPage({location, history, boardList, functionSet}){
                 {/* <BoardTitle>{location.state.name}</BoardTitle> */}
                 <BoardTitle>
                     <StyledEditable
-                        innerRef={nextBoardRef}
+                        innerRef={nextBoardNameRef}
                         html={nextBoardName}
                         disabled={false}
                         onChange={changeText}
@@ -67,7 +67,7 @@ const BoardTitle = styled.h1`
 
 const StyledEditable = styled(ContentEditable)`
     padding: 10px;
-    outline-color: ${PALETTE[3]};    
+    outline-color: ${PALETTE[3]};  
 `;
 
 const ToHome = styled(Link)`
