@@ -23,8 +23,8 @@ React
 * [x] Save as local data
 * [x] List scrolling feature
 * [x] Card scrolling feature
-* [ ] List drag and drop feature
-* [ ] Card drag and drop feature
+* [x] List drag and drop feature
+* [x] Card drag and drop feature
 * [ ] Board pinning feature
 * [ ] Board name editing feature
 * [ ] List name editing feature
