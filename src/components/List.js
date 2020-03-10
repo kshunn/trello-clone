@@ -31,12 +31,13 @@ export default function List({boardKey, listKey, listName, cardList, functionSet
                     >
                         {cardList.map((card, index) => (
                             <Draggable key={card.cardKey} draggableId={card.cardKey} index={index}>
-                                {(provided) => (
+                                {(provided, snapshot) => (
                                     <CardWrapper
                                         key={card.cardKey}
                                         {...provided.draggableProps}
                                         {...provided.dragHandleProps}
                                         ref={provided.innerRef}
+                                        isDragging={snapshot.isDragging}
                                     >
                                         <Card 
                                             boardKey={boardKey}

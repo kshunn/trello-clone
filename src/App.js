@@ -64,8 +64,7 @@ function App() {
           if(board.boardKey===boardKey){
             board.listList.forEach(list => {
               if(list.listKey===listKey){
-                const check = list.cardList.filter(card => card.content === text);
-                if(!check.length && text.length){
+                if(text.length){
                   list.cardList.push({cardKey: text.concat(Date.now()), content: text, done: false});
                 }
               }
@@ -130,15 +129,25 @@ function App() {
       setBoardList(newBoardList);
     };
 
-    const switchIndex = (boardKey, listKey, startIndex, endIndex) => {
+    const switchIndex = (boardKey, startListKey, endListKey, startIndex, endIndex) => {
       const newBoardList = [...boardList];
+      let dragCard = null;
       newBoardList.forEach(board => {
         if(board.boardKey===boardKey){
           board.listList.forEach(list => {
-            if(list.listKey===listKey){
-              const dragCard = list.cardList[startIndex];
+            if(list.listKey===startListKey){
+              dragCard = list.cardList[startIndex];
               list.cardList.splice(startIndex, 1);
-              list.cardList.splice(endIndex, 0, dragCard);
+              if(startListKey===endListKey){
+                list.cardList.splice(endIndex, 0, dragCard);
+              }
+              else{
+                board.listList.forEach(list => {
+                  if(list.listKey===endListKey){
+                    list.cardList.splice(endIndex, 0, dragCard);
+                  }
+                });
+              }
             }
           });
         }

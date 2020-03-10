@@ -22,15 +22,13 @@ export default function Board({boardKey, boardName, listList, functionSet}) {
     };
     const onDragEnd = result => {
         const { destination, source } = result;
-        console.log(source);
-        console.log(destination);
         if(!destination){
             return;
         }
         if(destination.droppableId===source.droppableId && destination.index===source.index){
             return;
         }
-        functionSet.switchIndex(boardKey, source.droppableId, source.index, destination.index);
+        functionSet.switchIndex(boardKey, source.droppableId, destination.droppableId, source.index, destination.index);
     };
 
     return(
