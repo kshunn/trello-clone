@@ -102,7 +102,8 @@ const ListAdder = styled.div`
     border-radius: 10px;
     background-color: white;
     padding: 10px 10px 5px 10px;
-    width: 210px;
+    width: 230px;
+    box-sizing: border-box;
 `;
 
 const ListWrapper = styled.div`
@@ -112,9 +113,9 @@ const ListWrapper = styled.div`
     border-radius: 10px;
     padding: 10px;
     background-color: white;
-    min-width: 210px;
-    max-width: 210px;
-    flex-grow: 0;
+    min-width: 230px;
+    max-width: 230px;
+    box-sizing: border-box;
 `;
 
 const ListInput = styled(Input)`
