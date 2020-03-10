@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Card from './Card';
 import {Button, Input, ADD, DELETE, PALETTE} from '../routes/Home';
+import {Droppable, Draggable} from 'react-beautiful-dnd';
 
 export default function List({boardKey, listKey, listName, cardList, functionSet}){
     const [text, setText] = useState("");
@@ -22,21 +23,39 @@ export default function List({boardKey, listKey, listName, cardList, functionSet
     return (
         <ListContainer>
             <h4>{listName}</h4>
-            <ScrollView>
-            {cardList.map(card => (
-                <CardWrapper key={card.cardKey}>
-                    <Card 
-                        boardKey={boardKey}
-                        listKey={listKey}
-                        cardKey={card.cardKey}
-                        content={card.content}
-                        done={card.done}
-                        functionSet={functionSet}
-                    />
-                    <CardButton onClick={()=>deleteCard(card.cardKey)}><i className={DELETE}></i></CardButton>
-                </CardWrapper>
-            ))}
-            </ScrollView>
+            <Droppable droppableId={listKey}>
+                {(provided) => (
+                    <ScrollView
+                        ref={provided.innerRef}
+                        {...provided.droppableProps}
+                    >
+                        {cardList.map((card, index) => (
+                            <Draggable draggableId={card.cardKey} index={index}>
+                                {(provided) => (
+                                    <CardWrapper
+                                        key={card.cardKey}
+                                        {...provided.draggableProps}
+                                        {...provided.dragHandleProps}
+                                        ref={provided.innerRef}
+                                    >
+                                        <Card 
+                                            boardKey={boardKey}
+                                            listKey={listKey}
+                                            cardKey={card.cardKey}
+                                            content={card.content}
+                                            done={card.done}
+                                            functionSet={functionSet}
+                                        />
+                                        <CardButton onClick={()=>deleteCard(card.cardKey)}><i className={DELETE}></i></CardButton>
+                                    </CardWrapper>
+                                )}
+
+                            </Draggable>
+                        ))}
+                        {provided.placeholder}
+                    </ScrollView>
+                )}
+            </Droppable>
             <CardAdder>
                 <CardInput type="text" value={text} onChange={onChange} placeholder='Add a card..' />
                 <Button onClick={onSubmit}><i className={ADD}></i></Button>

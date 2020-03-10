@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import List from './List';
 import {Button, Input, ADD, DELETE, EMPTY} from '../routes/Home';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 export default function Board({boardKey, boardName, listList, functionSet}) {
     const [text, setText] = useState("");
@@ -19,20 +20,26 @@ export default function Board({boardKey, boardName, listList, functionSet}) {
         createNewList(text);
         setText("");
     };
+    const onDragEnd = result => {
+        return;
+    };
+
     return(
         <BoardContainer>
-            {listList.map(list => (
-                <ListWrapper key={list.listKey}>
-                    <List
-                        boardKey={boardKey} 
-                        listKey={list.listKey} 
-                        listName={list.listName} 
-                        cardList={list.cardList} 
-                        functionSet={functionSet}
-                    />
-                    <Button onClick={() => deleteList(list.listKey)}><i className={DELETE}></i></Button>
-                </ListWrapper>
-            ))}
+            <DragDropContext onDragEnd={onDragEnd}>
+                {listList.map(list => (
+                    <ListWrapper key={list.listKey}>
+                        <List
+                            boardKey={boardKey} 
+                            listKey={list.listKey} 
+                            listName={list.listName} 
+                            cardList={list.cardList} 
+                            functionSet={functionSet}
+                        />
+                        <Button onClick={() => deleteList(list.listKey)}><i className={DELETE}></i></Button>
+                    </ListWrapper>
+                ))}
+            </DragDropContext>
             <div>
                 <ListAdder>
                     <ListInput type="text" value={text} onChange={onChange} placeholder='Add a list..'/>
