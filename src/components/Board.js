@@ -21,7 +21,16 @@ export default function Board({boardKey, boardName, listList, functionSet}) {
         setText("");
     };
     const onDragEnd = result => {
-        return;
+        const { destination, source } = result;
+        console.log(source);
+        console.log(destination);
+        if(!destination){
+            return;
+        }
+        if(destination.droppableId===source.droppableId && destination.index===source.index){
+            return;
+        }
+        functionSet.switchIndex(boardKey, source.droppableId, source.index, destination.index);
     };
 
     return(

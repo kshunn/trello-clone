@@ -30,7 +30,7 @@ export default function List({boardKey, listKey, listName, cardList, functionSet
                         {...provided.droppableProps}
                     >
                         {cardList.map((card, index) => (
-                            <Draggable draggableId={card.cardKey} index={index}>
+                            <Draggable key={card.cardKey} draggableId={card.cardKey} index={index}>
                                 {(provided) => (
                                     <CardWrapper
                                         key={card.cardKey}
@@ -114,10 +114,6 @@ const CardAdder = styled.div`
 
 const CardInput = styled(Input)`
     width: 100%;
-    color: white;
-    &::placeholder{
-        color: ${PALETTE[2]};
-    }
 `;
 
 const CardButton = styled(Button)`

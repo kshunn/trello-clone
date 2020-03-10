@@ -130,10 +130,27 @@ function App() {
       setBoardList(newBoardList);
     };
 
+    const switchIndex = (boardKey, listKey, startIndex, endIndex) => {
+      const newBoardList = [...boardList];
+      newBoardList.forEach(board => {
+        if(board.boardKey===boardKey){
+          board.listList.forEach(list => {
+            if(list.listKey===listKey){
+              const dragCard = list.cardList[startIndex];
+              list.cardList.splice(startIndex, 1);
+              list.cardList.splice(endIndex, 0, dragCard);
+            }
+          });
+        }
+      });
+      setBoardList(newBoardList);
+    };
+
     const functionSet = {
       create: create,
       remove: remove,
-      toggleDone: toggleDone
+      toggleDone: toggleDone,
+      switchIndex: switchIndex,
     };
 
     return (
