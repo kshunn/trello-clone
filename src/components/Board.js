@@ -103,7 +103,6 @@ const ListAdder = styled.div`
     background-color: white;
     padding: 10px 10px 5px 10px;
     width: 230px;
-    box-sizing: border-box;
 `;
 
 const ListWrapper = styled.div`
@@ -115,7 +114,6 @@ const ListWrapper = styled.div`
     background-color: white;
     min-width: 230px;
     max-width: 230px;
-    box-sizing: border-box;
 `;
 
 const ListInput = styled(Input)`

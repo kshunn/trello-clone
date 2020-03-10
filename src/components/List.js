@@ -71,7 +71,6 @@ const ListContainer = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding: 10px;
     word-wrap: break-word;
     word-break: break-word;
 `;
@@ -87,6 +86,7 @@ const CardWrapper = styled.div`
     background-color: ${PALETTE[2]};
     padding: 10px;
     color: ${PALETTE[3]};
+    flex-grow: 1;
 `;
 
 const ScrollView = styled.div`
@@ -95,7 +95,6 @@ const ScrollView = styled.div`
     width: 100%;
     justify-content: flex-start;
     align-items: center;
-    padding: 0 15px;
     max-height: 48vh;
     overflow-y: auto;
     min-height: 1px;
@@ -108,7 +107,7 @@ const CardAdder = styled.div`
     align-items: center;
     border-radius: 5px;
     width: 100%;
-    margin: 5px 0;
+    margin: 5px 0 10px 0;
     background-color: ${PALETTE[0]};
     padding: 10px;
     color: white;

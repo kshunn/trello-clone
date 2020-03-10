@@ -8,23 +8,25 @@ const PALETTE = ['#E9ECE5', '#C0DFD9', '#B3C2BF', '#3B3A36'];
 const EMPTY =  '---';
 
 const GlobalStyle = createGlobalStyle`
+    *{
+      box-sizing: border-box;
+    }
     body{
         padding: 0;
         margin: 0;
-        box-sizing: border-box;
         font-family: 'Lora', 'Noto Serif KR';
         background-color: ${PALETTE[0]};
     }
     ::-webkit-scrollbar{
-      background: ${PALETTE[2]};
+      background: none;
       height: 14px;
     }
     ::-webkit-scrollbar-track{
-      box-shadow: inset 0 0 10px #00000070;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
       border-radius: 10px;
     }
     ::-webkit-scrollbar-thumb{
-      background: rgba(255, 255, 255, 0.5);
+      background: rgba(0, 0, 0, 0.15);
       border-radius: 10px;
     }
 `;
