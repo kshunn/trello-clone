@@ -21,7 +21,10 @@ export default function List({boardKey, listKey, listName, cardList, functionSet
         setText("");
     };
     const deleteCard = (key) => {
-        functionSet.remove(boardKey, listKey, key);
+        const askDelete = window.confirm("Do you really want to remove the card?");
+        if(askDelete){
+            functionSet.remove(boardKey, listKey, key);
+        }
     };
     const changeText = e => {
         setNextListName(e.target.value);

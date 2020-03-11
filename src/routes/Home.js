@@ -15,7 +15,10 @@ export default function Home({boardList, functionSet}){
         functionSet.create(EMPTY, EMPTY, text);
     };
     const deleteBoard = key => {
-        functionSet.remove(key, EMPTY, EMPTY);
+        const askDelete = window.confirm("Do you really want to remove the board?");
+        if(askDelete){
+            functionSet.remove(key, EMPTY, EMPTY);
+        } 
     };
     const onChange = e =>{
         setText(e.target.value);
