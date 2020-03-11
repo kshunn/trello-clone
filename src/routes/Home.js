@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
+import Help from '../components/Help';
 
 export const ADD = 'fas fa-plus';
 export const DELETE = "fas fa-trash";
@@ -11,6 +12,7 @@ export const EMPTY =  '---';
 
 export default function Home({boardList, functionSet}){
     const [text, setText] = useState("");
+    const [showHelp, setShowHelp] = useState(false);
     const createNewBoard = text => {
         functionSet.create(EMPTY, EMPTY, text);
     };
@@ -76,6 +78,12 @@ export default function Home({boardList, functionSet}){
                 </BoardAdder>
                 </Boards>   
             </BoardsWrapper>
+            <HelpLink
+                onClick={() => setShowHelp(!showHelp)}
+            >
+                {showHelp ? 'Hide' : 'Tips'}
+            </HelpLink>
+            <Help show={showHelp}/>
         </Container>
     );
 }
@@ -87,7 +95,8 @@ export const Button = styled.button`
         color: ${PALETTE[2]};
     }
     cursor: pointer;
-    color: ${PALETTE[3]};    
+    color: ${PALETTE[3]};  
+    outline: none;  
 `;
 
 export const Input = styled.input`
@@ -174,5 +183,15 @@ const BoardsWrapper = styled.div`
     background-color: ${PALETTE[1]};
     margin: 10px 0;
 `;
+
+const HelpLink = styled.a`
+    padding-top: 20px;
+    font-size: 14px;
+    color: ${PALETTE[3]};
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: underline;
+`;
+
 
 
