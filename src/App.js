@@ -67,7 +67,7 @@ function App() {
             board.listList.forEach(list => {
               if(list.listKey===listKey){
                 if(text.length){
-                  list.cardList.push({cardKey: text.concat(Date.now()), content: text, done: false});
+                  list.cardList.push({cardKey: text.concat(Date.now()), cardName: text, done: false});
                 }
               }
             });
@@ -140,7 +140,7 @@ function App() {
           });
           setBoardList(newBoardList);
         }
-        else{ //removeCard
+        else{ //editCard
           const newBoardList = [...boardList];
           newBoardList.forEach(board => {
             if(board.boardKey===boardKey){
@@ -148,7 +148,7 @@ function App() {
                 if(list.listKey===listKey){
                   list.cardList.forEach(card => {
                     if(card.cardKey===cardKey){
-                      card.context = text;
+                      card.cardName = text;
                     }
                   });
                 }

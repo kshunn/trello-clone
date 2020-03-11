@@ -5,11 +5,11 @@ import {Button, PALETTE} from '../routes/Home';
 const CHECK = "fas fa-check";
 const DONE = "fas fa-times";
 
-export default function Card({ boardKey, listKey, cardKey, content, done, functionSet }){
+export default function Card({ boardKey, listKey, cardKey, cardName, done, functionSet }){
     const ICON = done ? DONE : CHECK;
     return (
         <>
-            <Cardtext done={done}>{content}</Cardtext>
+            <Cardtext done={done}>{cardName}</Cardtext>
             <CardButton done={done} onClick={()=>functionSet.toggleDone(boardKey, listKey, cardKey)}><i className={ICON}></i></CardButton>
         </>
     );

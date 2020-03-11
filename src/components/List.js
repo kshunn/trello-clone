@@ -79,7 +79,7 @@ export default function List({boardKey, listKey, listName, cardList, functionSet
                                             boardKey={boardKey}
                                             listKey={listKey}
                                             cardKey={card.cardKey}
-                                            content={card.content}
+                                            cardName={card.content}
                                             done={card.done}
                                             functionSet={functionSet}
                                         />
