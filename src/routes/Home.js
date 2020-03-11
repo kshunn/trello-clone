@@ -4,7 +4,8 @@ import {Link} from 'react-router-dom';
 
 export const ADD = 'fas fa-plus';
 export const DELETE = "fas fa-trash";
-const PIN = "fas fa-thumbtack";
+const PIN = "far fa-star";
+const PINNED = "fas fa-star";
 export const PALETTE = ['#E9ECE5', '#C0DFD9', '#B3C2BF', '#3B3A36'];
 export const EMPTY =  '---';
 
@@ -41,7 +42,7 @@ export default function Home({boardList, functionSet}){
                             }}>
                                 {board.boardName}
                             </ToBoard>
-                            <Button onClick={() => functionSet.togglePin(board.boardKey)}><i className={PIN}></i></Button>
+                            <Button onClick={() => functionSet.togglePin(board.boardKey)}><i className={board.pin ? PINNED : PIN}></i></Button>
                             <Button onClick={() => deleteBoard(board.boardKey)}><i className={DELETE}></i></Button>
                         </BoardLink>
                     ) : null
@@ -62,7 +63,7 @@ export default function Home({boardList, functionSet}){
                         }}>
                             {board.boardName}
                         </ToBoard>
-                        <Button onClick={() => functionSet.togglePin(board.boardKey)}><i className={PIN}></i></Button>
+                        <Button onClick={() => functionSet.togglePin(board.boardKey)}><i className={board.pin ? PINNED : PIN}></i></Button>
                         <Button onClick={() => deleteBoard(board.boardKey)}><i className={DELETE}></i></Button>
                     </BoardLink>
                 ))}
