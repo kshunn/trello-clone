@@ -45,7 +45,7 @@ export default function List({boardKey, listKey, listName, cardList, functionSet
     }
     return (
         <ListContainer>
-            <h4>
+            <ListTitle>
                 <StyledEditable
                     innerRef={nextListNameRef}
                     html={nextListName}
@@ -55,7 +55,7 @@ export default function List({boardKey, listKey, listName, cardList, functionSet
                     spellCheck='false'
                     onKeyPress={disableNewLines}
                 />
-            </h4>
+            </ListTitle>
             <Droppable droppableId={listKey} type="card">
                 {(provided) => (
                     <ScrollView
@@ -161,4 +161,8 @@ const CardButton = styled(Button)`
 const StyledEditable = styled(ContentEditable)`
     padding: 10px;  
     outline-color: ${PALETTE[3]};  
+`;
+
+const ListTitle = styled.h4`
+    cursor: pointer;
 `;
