@@ -44,7 +44,8 @@ function App() {
       if(boardKey===EMPTY){ //createBoard
         const check = boardList.filter(board => board.boardName === text);
         if(!check.length && text.length){
-            const newBoardList = boardList.concat([{boardKey: text.concat(Date.now()), boardName: text, listList: [], pin: false}]);
+            const newBoardList = boardList.concat([{boardKey: Date.now(), boardName: text, listList: [], pin: false}]);
+            console.log(newBoardList);
             setBoardList(newBoardList);
         } 
       }
@@ -94,7 +95,6 @@ function App() {
               board.listList = board.listList.filter(list => list.listKey !== listKey);
             }
           });
-          setBoardList(newBoardList);
           setBoardList(newBoardList);
         }
         else{ //removeCard
@@ -241,7 +241,7 @@ function App() {
             <GlobalStyle />
             <HashRouter>
               <Route path="/" exact={true} render={props => <Home {...props} boardList={boardList} functionSet={functionSet} />} />
-              <Route path="/board/:boardName" render={props => <BoardPage {...props} boardList={boardList} functionSet={functionSet}/>} />
+              <Route path="/board/:boardKey" render={props => <BoardPage {...props} boardList={boardList} functionSet={functionSet}/>} />
             </HashRouter>
         </>
     );

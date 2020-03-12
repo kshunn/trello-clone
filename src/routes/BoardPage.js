@@ -5,11 +5,11 @@ import {Link} from 'react-router-dom';
 import {PALETTE, EMPTY} from './Home';
 import ContentEditable from 'react-contenteditable';
 
-export default function BoardPage({location, history, boardList, functionSet}){
-    const board = location.state ? boardList.find(board => board.boardKey===location.state.key) : null;
+export default function BoardPage({history, match, boardList, functionSet}){
+    const board = boardList.find(board => board.boardKey===Number(match.params.boardKey));
     const [nextBoardName, setNextBoardName] = useState(board ? board.boardName : null);
     const nextBoardNameRef = useRef();
-    if(location.state===undefined){
+    if(!board){
         history.push("/");
         return null;
     }
@@ -19,7 +19,7 @@ export default function BoardPage({location, history, boardList, functionSet}){
             setNextBoardName(board.boardName);
             return;
         }
-        else functionSet.edit(location.state.key, EMPTY, EMPTY, nextBoardName);
+        else functionSet.edit(board.boardKey, EMPTY, EMPTY, nextBoardName);
     };
     const changeText = e => {
         setNextBoardName(e.target.value);
@@ -36,7 +36,6 @@ export default function BoardPage({location, history, boardList, functionSet}){
     return (
         <BoardPageWrapper>
             <Header>
-                {/* <BoardTitle>{location.state.name}</BoardTitle> */}
                 <BoardTitle>
                     <StyledEditable
                         innerRef={nextBoardNameRef}
@@ -51,8 +50,8 @@ export default function BoardPage({location, history, boardList, functionSet}){
                 <ToHome to={{pathname: '/'}}><i className="fas fa-home"></i></ToHome>
             </Header>
             <Board 
-                boardKey={location.state.key} 
-                boardName={location.state.name} 
+                boardKey={board.boardKey} 
+                boardName={board.boardName} 
                 listList={board.listList} 
                 functionSet={functionSet}
             />
