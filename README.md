@@ -29,7 +29,8 @@ React
 * [x] Board name editing feature
 * [x] List name editing feature
 * [x] Manual for users
-* [ ] Create card pages
+* [x] Create card pages
+    * [ ] Edit card name
     * [ ] Mark card as finished
     * [ ] Attach files and images
     * [ ] Descriptions and Comments
