@@ -25,7 +25,7 @@ function App() {
             <GlobalStyle />
             <HashRouter>
               <Route path="/" exact={true} render={props => <Home {...props} boardList={state.boardList} />} />
-              <Route path="/board/:boardKey" render={props => <BoardPage {...props} boardList={state.boardList} />} />
+              <Route path="/:boardKey/:boardName" render={props => <BoardPage {...props} boardList={state.boardList} />} />
             </HashRouter>
         </BoardListContext.Provider>
     );

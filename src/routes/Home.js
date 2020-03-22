@@ -50,7 +50,7 @@ export default function Home({ boardList }){
                     board.pin ? (
                         <BoardLink key={board.boardKey}>
                             <ToBoard to={{
-                                pathname: `/board/${board.boardKey}`,
+                                pathname: `/${board.boardKey}/${board.boardName}`,
                             }}>
                                 {board.boardName}
                             </ToBoard>
@@ -76,7 +76,7 @@ export default function Home({ boardList }){
                 {boardList.map(board => (
                     <BoardLink key={board.boardKey}>
                         <ToBoard to={{
-                            pathname: `/board/${board.boardKey}`,
+                            pathname: `/${board.boardKey}/${board.boardName}`,
                         }}>
                             {board.boardName}
                         </ToBoard>
