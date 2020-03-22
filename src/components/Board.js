@@ -1,18 +1,33 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import List from './List';
-import {Button, Input, ADD, DELETE, EMPTY} from '../routes/Home';
+import {Button, Input, ADD, DELETE} from '../routes/Home';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { BoardListContext } from '../App';
 
-export default function Board({boardKey, boardName, listList, functionSet}) {
+export default function Board({boardKey, listList}) {
+    const { dispatch } = React.useContext(BoardListContext);
     const [text, setText] = useState("");
     const createNewList = text => {
-        functionSet.create(boardKey, EMPTY, text);
+        dispatch({
+            type: "ADD_LIST",
+            payload: {
+                newListName: text,
+                boardKey: boardKey
+            }
+        });
+        console.log(listList);
     };
     const deleteList = (key) => {
         const askDelete = window.confirm("Do you really want to remove the list?");
         if(askDelete) {
-            functionSet.remove(boardKey, key, EMPTY);
+            dispatch({
+                type: "DELETE_LIST",
+                payload: {
+                    boardKey: boardKey,
+                    listKey: key
+                }
+            });
         }
     };
     const onChange = e =>{
@@ -32,11 +47,27 @@ export default function Board({boardKey, boardName, listList, functionSet}) {
             return;
         }
         if(type==='card'){
-            functionSet.switchIndex(boardKey, source.droppableId, destination.droppableId, source.index, destination.index);
+            dispatch({
+                type: "SWITCH_CARD",
+                payload: {
+                    boardKey: boardKey,
+                    startListKey: source.droppableId,
+                    endListKey: destination.droppableId,
+                    startIndex: source.index,
+                    endIndex: destination.index
+                }
+            });
             return;
         }
         else if(type==='list'){
-            functionSet.switchIndex(boardKey, EMPTY, EMPTY, source.index, destination.index);
+            dispatch({
+                type: "SWITCH_LIST",
+                payload: {
+                    boardKey: boardKey,
+                    startIndex: source.index,
+                    endIndex: destination.index
+                }
+            });
             return;
         }
     };
@@ -62,8 +93,7 @@ export default function Board({boardKey, boardName, listList, functionSet}) {
                                                 boardKey={boardKey} 
                                                 listKey={list.listKey} 
                                                 listName={list.listName} 
-                                                cardList={list.cardList} 
-                                                functionSet={functionSet}
+                                                cardList={list.cardList}
                                             />
                                             <Button onClick={() => deleteList(list.listKey)}>
                                                 <i className={DELETE}></i>

@@ -1,16 +1,25 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import Card from './Card';
-import {Button, Input, ADD, DELETE, PALETTE, EMPTY} from '../routes/Home';
+import {Button, Input, ADD, DELETE, PALETTE} from '../routes/Home';
 import {Droppable, Draggable} from 'react-beautiful-dnd';
 import ContentEditable from 'react-contenteditable';
+import { BoardListContext } from '../App';
 
-export default function List({boardKey, listKey, listName, cardList, functionSet}){
+export default function List({boardKey, listKey, listName, cardList}){
+    const { dispatch } = React.useContext(BoardListContext);
     const [text, setText] = useState("");
     const [nextListName, setNextListName] = useState(listName);
     const nextListNameRef = useRef();
     const createNewCard = text => {
-        functionSet.create(boardKey, listKey, text);
+        dispatch({
+            type: "ADD_CARD",
+            payload: {
+                newCardName: text,
+                boardKey: boardKey,
+                listKey: listKey,
+            }
+        });
     };
     const onChange = e =>{
         setText(e.target.value);
@@ -23,7 +32,14 @@ export default function List({boardKey, listKey, listName, cardList, functionSet
     const deleteCard = (key) => {
         const askDelete = window.confirm("Do you really want to remove the card?");
         if(askDelete){
-            functionSet.remove(boardKey, listKey, key);
+            dispatch({
+                type: "DELETE_CARD",
+                payload: {
+                    boardKey: boardKey,
+                    listKey: listKey,
+                    cardKey: key
+                }
+            });
         }
     };
     const changeText = e => {
@@ -35,7 +51,14 @@ export default function List({boardKey, listKey, listName, cardList, functionSet
             setNextListName(listName);
             return;
         }
-        else functionSet.edit(boardKey, listKey, EMPTY, nextListName);
+        else dispatch({
+            type: "EDIT_LIST",
+            payload: {
+                newListName: nextListName,
+                boardKey: boardKey,
+                listKey: listKey,
+            }
+        });
     }
     const disableNewLines = e => {
         const keyCode = e.keyCode || e.which;
@@ -78,10 +101,10 @@ export default function List({boardKey, listKey, listName, cardList, functionSet
                                         <Card 
                                             boardKey={boardKey}
                                             listKey={listKey}
-                                            cardKey={card.cardKey}
-                                            cardName={card.cardName}
-                                            done={card.done}
-                                            functionSet={functionSet}
+                                            {...card}
+                                            // cardKey={card.cardKey}
+                                            // cardName={card.cardName}
+                                            // done={card.done}
                                         />
                                         <CardButton onClick={()=>deleteCard(card.cardKey)}>
                                             <i className={DELETE}></i>

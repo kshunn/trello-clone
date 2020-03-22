@@ -2,10 +2,12 @@ import React, {useState, useRef} from 'react';
 import styled from 'styled-components';
 import Board from '../components/Board';
 import {Link} from 'react-router-dom';
-import {PALETTE, EMPTY} from './Home';
+import {PALETTE} from './Home';
 import ContentEditable from 'react-contenteditable';
+import { BoardListContext } from '../App';
 
-export default function BoardPage({history, match, boardList, functionSet}){
+export default function BoardPage({history, match, boardList}){
+    const { dispatch } = React.useContext(BoardListContext);
     const board = boardList.find(board => board.boardKey===Number(match.params.boardKey));
     const [nextBoardName, setNextBoardName] = useState(board ? board.boardName : null);
     const nextBoardNameRef = useRef();
@@ -19,7 +21,13 @@ export default function BoardPage({history, match, boardList, functionSet}){
             setNextBoardName(board.boardName);
             return;
         }
-        else functionSet.edit(board.boardKey, EMPTY, EMPTY, nextBoardName);
+        else dispatch({
+            type: "EDIT_BOARD",
+            payload: {
+                boardKey: board.boardKey,
+                newBoardName: nextBoardName
+            }
+        });
     };
     const changeText = e => {
         setNextBoardName(e.target.value);
@@ -50,10 +58,8 @@ export default function BoardPage({history, match, boardList, functionSet}){
                 <ToHome to={{pathname: '/'}}><i className="fas fa-home"></i></ToHome>
             </Header>
             <Board 
-                boardKey={board.boardKey} 
-                boardName={board.boardName} 
-                listList={board.listList} 
-                functionSet={functionSet}
+                boardKey={board.boardKey}
+                listList={board.listList}
             />
         </BoardPageWrapper>
     );

@@ -1,16 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
 import {Button, PALETTE} from '../routes/Home';
+import { BoardListContext } from '../App';
 
 const CHECK = "fas fa-check";
 const DONE = "fas fa-times";
 
-export default function Card({ boardKey, listKey, cardKey, cardName, done, functionSet }){
+export default function Card({ boardKey, listKey, cardKey, cardName, done }){
+    const { dispatch } = React.useContext(BoardListContext);
     const ICON = done ? DONE : CHECK;
     return (
         <>
             <Cardtext done={done}>{cardName}</Cardtext>
-            <CardButton done={done} onClick={()=>functionSet.toggleDone(boardKey, listKey, cardKey)}><i className={ICON}></i></CardButton>
+            <CardButton
+                done={done}
+                onClick={() => dispatch({
+                    type: "TOGGLE_DONE",
+                    payload: {
+                        boardKey: boardKey,
+                        listKey: listKey,
+                        cardKey: cardKey
+                    }
+                })}
+            >
+                <i className={ICON}></i>
+            </CardButton>
         </>
     );
 }

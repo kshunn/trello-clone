@@ -2,24 +2,35 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import Help from '../components/Help';
+import { BoardListContext } from '../App';
 
 export const ADD = 'fas fa-plus';
 export const DELETE = "fas fa-trash";
 const PIN = "far fa-star";
 const PINNED = "fas fa-star";
 export const PALETTE = ['#E9ECE5', '#C0DFD9', '#B3C2BF', '#3B3A36'];
-export const EMPTY =  '---';
 
-export default function Home({boardList, functionSet}){
+export default function Home({ boardList }){
+    const { dispatch } = React.useContext(BoardListContext);
     const [text, setText] = useState("");
     const [showHelp, setShowHelp] = useState(false);
     const createNewBoard = text => {
-        functionSet.create(EMPTY, EMPTY, text);
+        dispatch({
+            type: "ADD_BOARD",
+            payload: {
+                newBoardName: text
+            }
+        });
     };
     const deleteBoard = key => {
         const askDelete = window.confirm("Do you really want to remove the board?");
         if(askDelete){
-            functionSet.remove(key, EMPTY, EMPTY);
+            dispatch({
+                type: "DELETE_BOARD",
+                payload: {
+                    boardKey: key
+                }
+            });
         } 
     };
     const onChange = e =>{
@@ -43,8 +54,17 @@ export default function Home({boardList, functionSet}){
                             }}>
                                 {board.boardName}
                             </ToBoard>
-                            <Button onClick={() => functionSet.togglePin(board.boardKey)}><i className={board.pin ? PINNED : PIN}></i></Button>
-                            <Button onClick={() => deleteBoard(board.boardKey)}><i className={DELETE}></i></Button>
+                            <Button
+                                onClick={() => dispatch({ 
+                                    type: "TOGGLE_PIN",
+                                    payload: { boardKey: board.boardKey }
+                                })}
+                            >
+                                <i className={board.pin ? PINNED : PIN}></i>
+                            </Button>
+                            <Button onClick={() => deleteBoard(board.boardKey)}>
+                                <i className={DELETE}></i>
+                            </Button>
                         </BoardLink>
                     ) : null
                 ))}
@@ -60,8 +80,16 @@ export default function Home({boardList, functionSet}){
                         }}>
                             {board.boardName}
                         </ToBoard>
-                        <Button onClick={() => functionSet.togglePin(board.boardKey)}><i className={board.pin ? PINNED : PIN}></i></Button>
-                        <Button onClick={() => deleteBoard(board.boardKey)}><i className={DELETE}></i></Button>
+                        <Button onClick={() => dispatch({
+                                type: "TOGGLE_PIN",
+                                payload: { boardKey: board.boardKey }
+                            })}
+                        >
+                            <i className={board.pin ? PINNED : PIN}></i>
+                        </Button>
+                        <Button onClick={() => deleteBoard(board.boardKey)}>
+                            <i className={DELETE}></i>
+                        </Button>
                     </BoardLink>
                 ))}
                 <BoardAdder>
