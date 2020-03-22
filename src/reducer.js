@@ -2,8 +2,7 @@ function reducer(state, action){
   switch(action.type){
     case "ADD_BOARD": {
       const { newBoardName } = action.payload;
-      const check = state.boardList.filter(board => board.boardName===newBoardName);
-      if(!check.length && newBoardName.length){
+      if(newBoardName.length){
         const newBoard = {
           boardKey: Date.now(),
           boardName: newBoardName,
@@ -18,8 +17,7 @@ function reducer(state, action){
       const { newListName, boardKey } = action.payload;
       state.boardList.forEach(board => {
         if(board.boardKey===boardKey){
-          const check = board.listList.filter(list => list.listName===newListName);
-          if(!check.length&&newListName.length){
+          if(newListName.length){
             const newList = {
               listKey: newListName.concat(Date.now()),
               listName: newListName,
