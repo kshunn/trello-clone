@@ -19,7 +19,7 @@ function reducer(state, action){
         if(board.boardKey===boardKey){
           if(newListName.length){
             const newList = {
-              listKey: newListName.concat(Date.now()),
+              listKey: String(Date.now()),
               listName: newListName,
               cardList: []
             }
@@ -37,7 +37,7 @@ function reducer(state, action){
             if(list.listKey===listKey){
               if(newCardName.length){
                 const newCard = {
-                  cardKey: newCardName.concat(Date.now()),
+                  cardKey: String(Date.now()),
                   cardName: newCardName,
                   done: false
                 }
