@@ -123,7 +123,7 @@ export const Input = styled.input`
     border: none;
     padding: 5px;
     background: none;
-    font-family: 'Lora', 'Noto Serif KR';
+    font-family: 'Open Sans', 'Noto Sans KR';
     &::placeholder{
         color: ${PALETTE[2]};
     }

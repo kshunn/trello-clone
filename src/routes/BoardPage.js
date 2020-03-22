@@ -69,11 +69,11 @@ const BoardPageWrapper = styled.div`
     display: flex;
     flex-flow: column;
     text-align: center;
-    min-height: 100vh;
+    height: 100%;
 `;
 
 const BoardTitle = styled.h1`
-    font-size: 30px;
+    font-size: 24px;
     margin: auto;
     padding: 10px 20px;
     color: ${PALETTE[3]};
@@ -86,7 +86,7 @@ const StyledEditable = styled(ContentEditable)`
 `;
 
 const ToHome = styled(Link)`
-    font-size: 30px;
+    font-size: 24px;
     color: ${PALETTE[3]};
     &:hover{
         color: ${PALETTE[2]};
@@ -98,6 +98,6 @@ const Header = styled.header`
     margin-bottom: 20px;
     justify-content: center;
     align-items: center;
-    padding: 10px 20px;
+    padding: 0 20px;
     background-color: ${PALETTE[1]};
 `;

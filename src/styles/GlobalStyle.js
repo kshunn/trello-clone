@@ -5,11 +5,18 @@ export const GlobalStyle = createGlobalStyle`
     *{
       box-sizing: border-box;
     }
+    html{
+      height: 100%;
+    }
     body{
         padding: 0;
         margin: 0;
-        font-family: 'Lora', 'Noto Serif KR';
+        font-family: 'Open Sans', 'Noto Sans KR';
         background-color: ${PALETTE[0]};
+        height: 100%;
+    }
+    #root{
+      height: 100%;
     }
     ::-webkit-scrollbar{
       background: none;

@@ -84,19 +84,21 @@ export default function Board({boardKey, listList}) {
                             {listList.map((list, index) => (
                                 <Draggable key={list.listKey} draggableId={list.listKey} index={index}>
                                     {(provided) => (
-                                        <ListWrapper
-                                            {...provided.draggableProps}
-                                            ref={provided.innerRef}
-                                            {...provided.dragHandleProps}
-                                        >
-                                            <List
-                                                boardKey={boardKey}
-                                                {...list}
-                                            />
-                                            <Button onClick={() => deleteList(list.listKey)}>
-                                                <i className={DELETE}></i>
-                                            </Button>
-                                        </ListWrapper>
+                                        <Wrapper>
+                                            <ListWrapper
+                                                {...provided.draggableProps}
+                                                ref={provided.innerRef}
+                                                {...provided.dragHandleProps}
+                                            >
+                                                <List
+                                                    boardKey={boardKey}
+                                                    {...list}
+                                                />
+                                                <Button onClick={() => deleteList(list.listKey)}>
+                                                    <i className={DELETE}></i>
+                                                </Button>
+                                            </ListWrapper>
+                                        </Wrapper>
                                     )}
                                 </Draggable>        
                             ))}
@@ -116,6 +118,11 @@ export default function Board({boardKey, listList}) {
 
 }
 
+const Wrapper = styled.div`
+    height: 100%;
+    padding-bottom: 10px;
+`;
+
 const BoardContainer = styled.div`
     display: flex;
     flex-direction: row;
@@ -123,7 +130,8 @@ const BoardContainer = styled.div`
     align-items: flex-start;
     padding: 0 10px;
     overflow-x: auto;
-    flex-grow: 1;
+    overflow-y: hidden;
+    height: 100%;
 `;
 
 const ListAdder = styled.div`
@@ -147,6 +155,7 @@ const ListWrapper = styled.div`
     background-color: white;
     min-width: 230px;
     max-width: 230px;
+    max-height: 100%;
 `;
 
 const ListInput = styled(Input)`
@@ -158,4 +167,5 @@ const ListInput = styled(Input)`
 const ListField = styled.div`
     display: flex;
     align-items: flex-start;
+    height: 100%;
 `;

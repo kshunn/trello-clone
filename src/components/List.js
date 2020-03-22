@@ -131,6 +131,8 @@ const ListContainer = styled.div`
     align-items: center;
     word-wrap: break-word;
     word-break: break-word;
+    max-height: 100%;
+    overflow-y: auto;
 `;
 
 const CardWrapper = styled.div`
@@ -153,7 +155,6 @@ const ScrollView = styled.div`
     width: 100%;
     justify-content: flex-start;
     align-items: center;
-    max-height: 48vh;
     overflow-y: auto;
     min-height: 1px;
 `;
@@ -182,10 +183,13 @@ const CardButton = styled(Button)`
 `;
 
 const StyledEditable = styled(ContentEditable)`
-    padding: 10px;  
+    padding: 5px;  
     outline-color: ${PALETTE[3]};  
 `;
 
 const ListTitle = styled.h4`
     cursor: pointer;
+    width: 100%;
+    text-align: left;
+    margin: 5px 0;
 `;
