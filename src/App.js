@@ -1,9 +1,8 @@
 import React from 'react';
-import { HashRouter, Route } from 'react-router-dom';
-import Home from './routes/Home';
-import BoardPage from './routes/BoardPage';
+import { HashRouter } from 'react-router-dom';
 import reducer from './reducer';
 import { GlobalStyle } from './styles/GlobalStyle';
+import Router from './Router';
 
 export const BoardListContext = React.createContext(
   {
@@ -20,12 +19,17 @@ function App() {
     React.useEffect(() => {
       localStorage.setItem('localBoardList', JSON.stringify(state.boardList));
     }, [state]);
+
     return (
         <BoardListContext.Provider value={contextValue}>
             <GlobalStyle />
             <HashRouter>
-              <Route path="/" exact={true} render={props => <Home {...props} boardList={state.boardList} />} />
-              <Route path="/:boardKey/:boardName" render={props => <BoardPage {...props} boardList={state.boardList} />} />
+              <Router boardList={state.boardList}/>
+              {/* <Switch location={background||location}>
+                <Route path="/" exact={true} render={props => <Home {...props} boardList={state.boardList} />} />
+                <Route path="/:boardKey/:boardName" render={props => <BoardPage {...props} boardList={state.boardList} />} />
+              </Switch>
+              {background && <Route path="/:cardKey/:cardName" children={<CardPage />} />} */}
             </HashRouter>
         </BoardListContext.Provider>
     );

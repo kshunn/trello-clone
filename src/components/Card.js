@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link, useLocation} from 'react-router-dom';
 import styled from 'styled-components';
 import {Button, PALETTE} from '../routes/Home';
 import { BoardListContext } from '../App';
@@ -7,11 +8,23 @@ const CHECK = "fas fa-check";
 const DONE = "fas fa-times";
 
 export default function Card({ boardKey, listKey, cardKey, cardName, done }){
+    const location = useLocation();
     const { dispatch } = React.useContext(BoardListContext);
     const ICON = done ? DONE : CHECK;
     return (
         <>
-            <Cardtext done={done}>{cardName}</Cardtext>
+            <Cardtext
+                done={done}
+                to={{
+                    pathname: `/${cardKey}/${cardName}`,
+                    state: {
+                        background: location,
+                        cardName: cardName
+                    }
+                }}
+            >
+                {cardName}
+            </Cardtext>
             <CardButton
                 done={done}
                 onClick={() => dispatch({
@@ -29,12 +42,13 @@ export default function Card({ boardKey, listKey, cardKey, cardName, done }){
     );
 }
 
-const Cardtext = styled.div`
+const Cardtext = styled(Link)`
     width: 100%;
     padding: 5px;
     text-align: left;
     font-size: 14px;
     text-decoration: ${props => (props.done ? 'line-through' : 'none')};
+    color: ${PALETTE[3]};
 `;
 
 const CardButton = styled(Button)`

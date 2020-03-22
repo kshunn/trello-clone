@@ -1,14 +1,16 @@
 import React, {useState, useRef} from 'react';
 import styled from 'styled-components';
 import Board from '../components/Board';
-import {Link} from 'react-router-dom';
+import {Link, useHistory, useParams} from 'react-router-dom';
 import {PALETTE} from './Home';
 import ContentEditable from 'react-contenteditable';
 import { BoardListContext } from '../App';
 
-export default function BoardPage({history, match, boardList}){
+export default function BoardPage({ boardList }){
     const { dispatch } = React.useContext(BoardListContext);
-    const board = boardList.find(board => board.boardKey===Number(match.params.boardKey));
+    const { boardKey } = useParams();
+    const history = useHistory();
+    const board = boardList.find(board => board.boardKey===Number(boardKey));
     const [nextBoardName, setNextBoardName] = useState(board ? board.boardName : null);
     const nextBoardNameRef = useRef();
     if(!board){
