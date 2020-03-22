@@ -90,10 +90,8 @@ export default function Board({boardKey, listList}) {
                                             {...provided.dragHandleProps}
                                         >
                                             <List
-                                                boardKey={boardKey} 
-                                                listKey={list.listKey} 
-                                                listName={list.listName} 
-                                                cardList={list.cardList}
+                                                boardKey={boardKey}
+                                                {...list}
                                             />
                                             <Button onClick={() => deleteList(list.listKey)}>
                                                 <i className={DELETE}></i>

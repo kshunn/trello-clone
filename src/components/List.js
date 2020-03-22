@@ -102,9 +102,6 @@ export default function List({boardKey, listKey, listName, cardList}){
                                             boardKey={boardKey}
                                             listKey={listKey}
                                             {...card}
-                                            // cardKey={card.cardKey}
-                                            // cardName={card.cardName}
-                                            // done={card.done}
                                         />
                                         <CardButton onClick={()=>deleteCard(card.cardKey)}>
                                             <i className={DELETE}></i>
