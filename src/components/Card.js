@@ -7,9 +7,10 @@ import { BoardListContext } from '../App';
 const CHECK = "fas fa-check";
 const DONE = "fas fa-times";
 
-export default function Card({ boardKey, listKey, cardKey, cardName, done }) {
+export default function Card({ boardKey, listKey, cardKey }) {
   const location = useLocation();
-  const { dispatch } = React.useContext(BoardListContext);
+  const { dispatch, findElement } = React.useContext(BoardListContext);
+  const { cardName, done } = findElement(boardKey, listKey, cardKey);
   const ICON = done ? DONE : CHECK;
   return (
     <>
@@ -19,7 +20,6 @@ export default function Card({ boardKey, listKey, cardKey, cardName, done }) {
           pathname: `/${cardKey}/${cardName}`,
           state: {
             background: location,
-            cardName: cardName,
             boardKey: boardKey,
             listKey: listKey,
             cardKey: cardKey,

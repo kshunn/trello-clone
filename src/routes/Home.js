@@ -10,8 +10,9 @@ const PIN = "far fa-star";
 const PINNED = "fas fa-star";
 export const PALETTE = ['#E9ECE5', '#C0DFD9', '#B3C2BF', '#3B3A36'];
 
-export default function Home({ boardList }) {
-  const { dispatch } = React.useContext(BoardListContext);
+export default function Home() {
+  const { dispatch, findElement } = React.useContext(BoardListContext);
+  const boardList = findElement();
   const [text, setText] = useState("");
   const [showHelp, setShowHelp] = useState(false);
   const createNewBoard = text => {

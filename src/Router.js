@@ -4,22 +4,22 @@ import Home from './routes/Home';
 import BoardPage from './routes/BoardPage';
 import CardPage from './routes/CardPage';
 
-export default function Router({boardList}){
+export default function Router(){
   const location = useLocation();
   const background = location.state && location.state.background;
   return (
     <>
       <Switch location={background||location}>
-        <Route path="/" exact={true} render={props => <Home {...props} boardList={boardList} />} />
+        <Route path="/" exact={true} children={<Home />} />
         <Route
-          path="/:boardKey/:boardName" 
-          render={props => <BoardPage {...props} boardList={boardList} />} 
+          path="/:boardKey/:boardName"
+          children={<BoardPage />} 
         />
       </Switch>
       {background && 
       <Route 
         path="/:cardKey/:cardName" 
-        render={props => <CardPage {...props} boardList={boardList}/>} 
+        children={<CardPage />}
       />}
     </>
   );

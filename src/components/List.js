@@ -6,8 +6,9 @@ import { Droppable, Draggable } from 'react-beautiful-dnd';
 import ContentEditable from 'react-contenteditable';
 import { BoardListContext } from '../App';
 
-export default function List({ boardKey, listKey, listName, cardList }) {
-  const { dispatch } = React.useContext(BoardListContext);
+export default function List({ boardKey, listKey }) {
+  const { dispatch, findElement } = React.useContext(BoardListContext);
+  const { listName, cardList } = findElement(boardKey, listKey);
   const [text, setText] = useState("");
   const [nextListName, setNextListName] = useState(listName);
   const nextListNameRef = useRef();
@@ -101,7 +102,7 @@ export default function List({ boardKey, listKey, listName, cardList }) {
                     <Card
                       boardKey={boardKey}
                       listKey={listKey}
-                      {...card}
+                      cardKey={card.cardKey}
                     />
                     <CardButton onClick={() => deleteCard(card.cardKey)}>
                       <i className={DELETE}></i>

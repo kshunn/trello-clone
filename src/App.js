@@ -13,15 +13,21 @@ export const BoardListContext = React.createContext(
 function App() {
   const initialState = React.useContext(BoardListContext);
   const [state, dispatch] = React.useReducer(reducer, initialState);
-  const contextValue = React.useMemo(() => {
-    return { state, dispatch };
-  }, [state, dispatch]);
+  const findElement = (boardKey="", listKey="", cardKey="") => {
+    if(!boardKey) return state.boardList;
+    const board = state.boardList.find(board => board.boardKey===boardKey);
+    if(!listKey) return board;
+    const list = board.listList.find(list => list.listKey===listKey);
+    if(!cardKey) return list;
+    const card = list.cardList.find(card => card.cardKey===cardKey);
+    return card;
+  };
   React.useEffect(() => {
     localStorage.setItem('localBoardList', JSON.stringify(state.boardList));
   }, [state]);
-
+  
   return (
-    <BoardListContext.Provider value={contextValue}>
+    <BoardListContext.Provider value={{ dispatch, findElement }}>
       <GlobalStyle />
       <HashRouter>
         <Router boardList={state.boardList} />

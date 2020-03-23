@@ -39,7 +39,8 @@ function reducer(state, action){
                 const newCard = {
                   cardKey: String(Date.now()),
                   cardName: newCardName,
-                  done: false
+                  done: false,
+                  description: 'Add a description',
                 }
                 list.cardList.push(newCard);
               }

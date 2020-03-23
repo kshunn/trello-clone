@@ -1,16 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useHistory, useLocation } from 'react-router-dom';
-import { Button } from '../routes/Home';
+import { PALETTE } from '../routes/Home';
 import ContentEditable from 'react-contenteditable';
 import { BoardListContext } from '../App';
+import CardBody from '../components/CardBody';
 
-
-export default function CardPage({ boardList }){
-  const { dispatch } = React.useContext(BoardListContext);
+export default function CardPage(){
+  const { dispatch, findElement } = React.useContext(BoardListContext);
   const history = useHistory();
   const location = useLocation();
-  const { cardName, boardKey, listKey, cardKey } = location.state;
+  const { boardKey, listKey, cardKey } = location.state;
+  const { cardName } = findElement(boardKey, listKey, cardKey);
   const [nextCardName, setNextCardName] = React.useState(cardName);
   const nextCardNameRef = React.useRef();
   const back = e => {
@@ -50,7 +51,7 @@ export default function CardPage({ boardList }){
     <Full onClick={back}>
       <Modal>
         <CardHeader>
-          <ContentEditable 
+          <StyledEditable 
             innerRef={nextCardNameRef}
             html={nextCardName}
             disabled={false}
@@ -59,14 +60,30 @@ export default function CardPage({ boardList }){
             onKeyPress={disableNewLines}
             spellCheck='false'
           />
-          <Button>
-            <i className="fas fa-times" onClick={back}/>
-          </Button>
+          <Button className="fas fa-times" onClick={back}/>
         </CardHeader>
+        <CardBody 
+          boardKey={boardKey}
+          listKey={listKey}
+          cardKey={cardKey}
+        />
       </Modal>
     </Full>
   );
 }
+
+const Button = styled.i`
+  border: none;
+  background: none;
+  &:hover{
+      color: ${PALETTE[2]};
+  }
+  cursor: pointer;
+  color: ${PALETTE[3]};  
+  display: flex;
+  align-items: center;
+  padding: 0 10px; 
+`;
 
 const Full = styled.div`
   position: absolute;
@@ -93,4 +110,9 @@ const CardHeader = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+`;
+
+const StyledEditable = styled(ContentEditable)`
+  padding: 5px;  
+  outline-color: ${PALETTE[3]};  
 `;

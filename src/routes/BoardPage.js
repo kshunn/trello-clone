@@ -6,11 +6,11 @@ import { PALETTE } from './Home';
 import ContentEditable from 'react-contenteditable';
 import { BoardListContext } from '../App';
 
-export default function BoardPage({ boardList }) {
-  const { dispatch } = React.useContext(BoardListContext);
+export default function BoardPage() {
+  const { dispatch, findElement } = React.useContext(BoardListContext);
   const { boardKey } = useParams();
   const history = useHistory();
-  const board = boardList.find(board => board.boardKey === Number(boardKey));
+  const board = findElement(Number(boardKey));
   const [nextBoardName, setNextBoardName] = useState(board ? board.boardName : null);
   const nextBoardNameRef = useRef();
   if (!board) {
@@ -61,7 +61,6 @@ export default function BoardPage({ boardList }) {
       </Header>
       <Board
         boardKey={board.boardKey}
-        listList={board.listList}
       />
     </BoardPageWrapper>
   );

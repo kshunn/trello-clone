@@ -5,8 +5,9 @@ import { Button, Input, ADD, DELETE } from '../routes/Home';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { BoardListContext } from '../App';
 
-export default function Board({ boardKey, listList }) {
-  const { dispatch } = React.useContext(BoardListContext);
+export default function Board({ boardKey }) {
+  const { dispatch, findElement } = React.useContext(BoardListContext);
+  const { listList } = findElement(boardKey);
   const [text, setText] = useState("");
   const createNewList = text => {
     dispatch({
@@ -91,7 +92,7 @@ export default function Board({ boardKey, listList }) {
                       >
                         <List
                           boardKey={boardKey}
-                          {...list}
+                          listKey={list.listKey}
                         />
                         <Button onClick={() => deleteList(list.listKey)}>
                           <i className={DELETE}></i>
