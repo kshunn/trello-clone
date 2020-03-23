@@ -35,7 +35,7 @@ export default function Board({ boardKey }) {
   };
   const onSubmit = e => {
     e.preventDefault();
-    createNewList(text);
+    if(text) createNewList(text);
     setText("");
   };
   const onDragEnd = result => {

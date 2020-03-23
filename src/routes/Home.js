@@ -39,7 +39,7 @@ export default function Home() {
   };
   const onSubmit = e => {
     e.preventDefault();
-    createNewBoard(text);
+    if(text) createNewBoard(text);
     setText("");
   };
   return (

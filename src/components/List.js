@@ -27,7 +27,7 @@ export default function List({ boardKey, listKey }) {
   };
   const onSubmit = e => {
     e.preventDefault();
-    createNewCard(text);
+    if(text) createNewCard(text);
     setText("");
   };
   const deleteCard = (key) => {

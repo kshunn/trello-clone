@@ -2,29 +2,24 @@ function reducer(state, action){
   switch(action.type){
     case "ADD_BOARD": {
       const { newBoardName } = action.payload;
-      if(newBoardName){
-        const newBoard = {
-          boardKey: Date.now(),
-          boardName: newBoardName,
-          listList: [],
-          pin: false,
-        }
-        return { boardList: [...state.boardList, newBoard] };
+      const newBoard = {
+        boardKey: Date.now(),
+        boardName: newBoardName,
+        listList: [],
+        pin: false,
       }
-      break;
+      return { boardList: [...state.boardList, newBoard] };
     }
     case "ADD_LIST": {
       const { newListName, boardKey } = action.payload;
       state.boardList.forEach(board => {
         if(board.boardKey===boardKey){
-          if(newListName){
-            const newList = {
-              listKey: String(Date.now()),
-              listName: newListName,
-              cardList: []
-            }
-            board.listList.push(newList);
+          const newList = {
+            listKey: String(Date.now()),
+            listName: newListName,
+            cardList: []
           }
+          board.listList.push(newList);
         }
       });
       return {...state};
@@ -35,15 +30,13 @@ function reducer(state, action){
         if(board.boardKey===boardKey){
           board.listList.forEach(list => {
             if(list.listKey===listKey){
-              if(newCardName){
-                const newCard = {
-                  cardKey: String(Date.now()),
-                  cardName: newCardName,
-                  done: false,
-                  description: 'Add a description',
-                }
-                list.cardList.push(newCard);
+              const newCard = {
+                cardKey: String(Date.now()),
+                cardName: newCardName,
+                done: false,
+                description: 'Add a description',
               }
+              list.cardList.push(newCard);
             }
           });
         }

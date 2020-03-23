@@ -30,7 +30,7 @@ function App() {
     <BoardListContext.Provider value={{ dispatch, findElement }}>
       <GlobalStyle />
       <HashRouter>
-        <Router boardList={state.boardList} />
+        <Router />
       </HashRouter>
     </BoardListContext.Provider>
   );
