@@ -16,7 +16,6 @@ export default function Board({ boardKey, listList }) {
         boardKey: boardKey
       }
     });
-    console.log(listList);
   };
   const deleteList = (key) => {
     const askDelete = window.confirm("Do you really want to remove the list?");

@@ -2,7 +2,7 @@ function reducer(state, action){
   switch(action.type){
     case "ADD_BOARD": {
       const { newBoardName } = action.payload;
-      if(newBoardName.length){
+      if(newBoardName){
         const newBoard = {
           boardKey: Date.now(),
           boardName: newBoardName,
@@ -17,7 +17,7 @@ function reducer(state, action){
       const { newListName, boardKey } = action.payload;
       state.boardList.forEach(board => {
         if(board.boardKey===boardKey){
-          if(newListName.length){
+          if(newListName){
             const newList = {
               listKey: String(Date.now()),
               listName: newListName,
@@ -35,7 +35,7 @@ function reducer(state, action){
         if(board.boardKey===boardKey){
           board.listList.forEach(list => {
             if(list.listKey===listKey){
-              if(newCardName.length){
+              if(newCardName){
                 const newCard = {
                   cardKey: String(Date.now()),
                   cardName: newCardName,

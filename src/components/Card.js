@@ -14,12 +14,15 @@ export default function Card({ boardKey, listKey, cardKey, cardName, done }) {
   return (
     <>
       <Cardtext
-        done={done}
+        done={done ? 1 : 0}
         to={{
           pathname: `/${cardKey}/${cardName}`,
           state: {
             background: location,
-            cardName: cardName
+            cardName: cardName,
+            boardKey: boardKey,
+            listKey: listKey,
+            cardKey: cardKey,
           }
         }}
       >
