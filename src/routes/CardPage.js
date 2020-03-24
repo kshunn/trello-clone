@@ -96,7 +96,7 @@ const Full = styled.div`
 
 const Modal = styled.div`
   position: absolute;
-  background: white;
+  background: ${PALETTE[0]};
   top: 80px;
   left: 10%;
   right: 10%;
@@ -114,5 +114,8 @@ const CardHeader = styled.div`
 
 const StyledEditable = styled(ContentEditable)`
   padding: 5px;  
-  outline-color: ${PALETTE[3]};  
+  outline-color: ${PALETTE[3]};
+  font-weight: bold;
+  font-size: 24px;
+  margin: auto;  
 `;

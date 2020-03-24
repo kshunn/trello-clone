@@ -1,11 +1,13 @@
 import React from 'react';
 import { BoardListContext } from '../App';
 import ContentEditable from 'react-contenteditable';
+import styled from 'styled-components';
+import { PALETTE } from '../routes/Home';
 
 export default function CardBody({ boardKey, listKey, cardKey }){
   const { dispatch, findElement } = React.useContext(BoardListContext);
   const { done, description } = findElement(boardKey, listKey, cardKey);
-  const [status, oppositeStatus] = done ? ['done', 'undone'] : ['undone', 'done'];
+  const [status, oppositeStatus] = done ? ['Done', 'undone'] : ['Undone', 'done'];
   const [nextDescription, setNextDescription] = React.useState(description);
   const nextDescriptionRef = React.useRef();
   const disableNewLines = e => {
@@ -37,10 +39,12 @@ export default function CardBody({ boardKey, listKey, cardKey }){
     });
   };
   return (
-    <div>
+    <BodyWrapper>
       <div>
-        Status: {status}
-        <button
+        <Header>
+          Status
+        </Header>
+        <Toggle
           onClick={() => dispatch({
             type: "TOGGLE_DONE",
             payload: {
@@ -50,21 +54,56 @@ export default function CardBody({ boardKey, listKey, cardKey }){
             }
           })}
         >
-          Mark it as {oppositeStatus}
-        </button>
+          {oppositeStatus}
+        </Toggle>
       </div>
-      <div>
-        Description
-        <ContentEditable 
-            innerRef={nextDescriptionRef}
-            html={nextDescription}
-            disabled={false}
-            onChange={changeText}
-            onBlur={editDescription}
-            onKeyPress={disableNewLines}
-            spellCheck='false'
-          />
-      </div>
-    </div>
+      <Content>
+        {status}
+      </Content>
+      <Header>Description</Header>
+      <StyledEditable 
+        innerRef={nextDescriptionRef}
+        html={nextDescription}
+        disabled={false}
+        onChange={changeText}
+        onBlur={editDescription}
+        onKeyPress={disableNewLines}
+        spellCheck='false'
+      />
+    </BodyWrapper>
   );
 }
+
+const BodyWrapper = styled.div`
+  padding: 10px 5px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Header = styled.span`
+  font-weight: bold;
+  padding: 5px 0;
+  font-size: 20px;
+`;
+
+const Content = styled.div`
+  padding: 5px 0 20px 0;
+  font-size: 16px;
+`;
+
+const Toggle = styled.button`
+  margin: 0 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  padding: 8px;
+  cursor: pointer;
+  background-color: ${PALETTE[2]};
+  text-transform: uppercase;
+`;
+
+const StyledEditable = styled(ContentEditable)`
+  outline-color: ${PALETTE[3]};
+  padding: 5px 0;
+`;

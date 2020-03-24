@@ -5,6 +5,7 @@ import { Button, Input, ADD, DELETE, PALETTE } from '../routes/Home';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import ContentEditable from 'react-contenteditable';
 import { BoardListContext } from '../App';
+import TextareaAutosize from 'react-autosize-textarea';
 
 export default function List({ boardKey, listKey }) {
   const { dispatch, findElement } = React.useContext(BoardListContext);
@@ -117,7 +118,7 @@ export default function List({ boardKey, listKey }) {
         )}
       </Droppable>
       <CardAdder>
-        <CardInput type="text" value={text} onChange={onChange} placeholder='Add a card..' />
+        <CardInput value={text} onChange={onChange} placeholder='Add a card..' rows="1"/>
         <Button onClick={onSubmit}><i className={ADD}></i></Button>
       </CardAdder>
     </ListContainer>
@@ -173,8 +174,19 @@ const CardAdder = styled.div`
   color: white;
 `;
 
-const CardInput = styled(Input)`
+const CardInput = styled(TextareaAutosize)`
     width: 100%;
+    border: none;
+    padding: 5px;
+    background: none;
+    font-family: 'Open Sans', 'Noto Sans KR';
+    &::placeholder{
+        color: ${PALETTE[2]};
+    }
+    outline-color: ${PALETTE[3]};
+    overflow: hidden;
+    overflow-wrap: break-word;
+    resize: none;
 `;
 
 const CardButton = styled(Button)`
