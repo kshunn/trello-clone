@@ -172,6 +172,23 @@ function reducer(state, action){
       });
       return {...state};
     }
+    case "EDIT_DESCRIPTION": {      
+      const { boardKey, listKey, cardKey, newDescription } = action.payload;
+      state.boardList.forEach(board => {
+        if(board.boardKey===boardKey){
+          board.listList.forEach(list => {
+            if(list.listKey===listKey){
+              list.cardList.forEach(card => {
+                if(card.cardKey===cardKey){
+                  card.description = newDescription;
+                }
+              });
+            }
+          });
+        }
+      });
+      return {...state};
+    }
     default:
       return state;
   }
