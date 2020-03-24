@@ -30,7 +30,7 @@ React
 * [x] List name editing feature
 * [x] Manual for users
 * [x] Create card pages
-    * [ ] Edit card name
-    * [ ] Mark card as finished
+    * [x] Edit card name
+    * [x] Mark card as finished
     * [ ] Attach files and images
-    * [ ] Descriptions and Comments
+    * [x] Descriptions and Comments
